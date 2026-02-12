@@ -6,9 +6,11 @@ license = "BSD-3-Clause"
 authors = ["Frédéric Vogt <frederic.vogt@meteoswiss.ch>"]
 readme = "README.rst"
 include = ["CHANGELOG.rst"]
+packages = [{include = "*", from="src"}]
+
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.14"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.18.1"
