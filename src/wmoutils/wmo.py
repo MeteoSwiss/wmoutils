@@ -6,7 +6,16 @@ Distributed under the terms of the BSD 3-Clause License.
 SPDX-License-Identifier: BSD-3-Clause
 """
 
+# Import from Python
+import logging
 
+# import from this module
+from .logger import log_func_call
+
+# Setup the logger
+logger = logging.getLogger(__name__)
+
+@log_func_call(logger)
 def dummy_func(input_value: float) -> int:
     """
     Dummy function.
