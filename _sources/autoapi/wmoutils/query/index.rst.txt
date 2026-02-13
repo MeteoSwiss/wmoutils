@@ -1,0 +1,91 @@
+wmoutils.query
+==============
+
+.. py:module:: wmoutils.query
+
+.. autoapi-nested-parse::
+
+   Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
+
+   Distributed under the terms of the BSD 3-Clause License.
+
+   SPDX-License-Identifier: BSD-3-Clause
+
+   Module contains: functions to query external APIs, e.g. WDQMS and OSCAR/Surface.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   wmoutils.query.logger
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   wmoutils.query.build_wdqms_request
+   wmoutils.query.query_wdqms
+   wmoutils.query.query_oscar_surface
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+
+.. py:function:: build_wdqms_request(station_type: str, interval: str) -> str
+
+   Return th string required for a WDQMS API request.
+
+   :Parameters: * **station_type** (*str*) -- either 'surface' or 'upper-air'.
+                * **interval** (*str*) -- assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+
+   Returns: str of API request
+
+
+.. py:function:: query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> polars.DataFrame
+
+   Send a request to WDQMS via its API, and return the text of the reply as a polars.DataFrame.
+
+   :Parameters: * **station_type** (*str*) -- either 'surface' or 'upper-air'.
+                * **var_name** (*str*) -- name of variable, e.g. '2m Temperature'.
+                * **interval** (*str*) -- assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+                * **date** (*str*) -- date of the availability assessment, e.g. '2023-11'
+
+   Returns: polars.DataFrame
+
+
+
+.. py:function:: query_oscar_surface(extra_prms: list = None, **search_params) -> polars.DataFrame
+
+   Utility function to query OSCAR/Surface and extract relevant station information.
+
+   :Parameters: * **extra_prms** (*list, optional*) -- list of extra parameters to extract from the API reply in
+                  addition to the default ones.
+                * **\*\*search_params** -- search keyword-arguments-and-value-pairs, to be fed directly to the
+                  'params' keyword of the API requests.get() function.
+
+   :returns:
+
+             containing the 'wigosId', 'Station name', 'longitude', and 'latitude' columns,
+                 and any extra parameters specified in the 'extra_prms' argument.
+   :rtype: pl.DataFrame
+
+   .. rubric:: Example
+
+   To query a station with a specific wigosId:
+   query_oscar_surface(wigosId='0-20000-0-06610')
+
+   To query all fixed surface stations in Switzerland:
+   query_oscar_surface(territoryName='CHE',facilityType='LandFixed')
+
+   API Reference:
+      https://oscar.wmo.int/surface/#/faq/
+
+
+

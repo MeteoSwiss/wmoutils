@@ -1,4 +1,4 @@
-wmoutils Documentation
+Welcome to the wmoutils documentation
 ================================================
 
 .. toctree::

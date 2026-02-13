@@ -19,6 +19,22 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
-   /autoapi/wmoutils/main/index
+   /autoapi/wmoutils/errors/index
+   /autoapi/wmoutils/gbon/index
+   /autoapi/wmoutils/logger/index
+   /autoapi/wmoutils/query/index
 
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   wmoutils.logger
+
+
+Package Contents
+----------------
+
+.. py:data:: logger
 

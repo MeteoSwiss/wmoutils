@@ -1,0 +1,76 @@
+wmoutils.gbon
+=============
+
+.. py:module:: wmoutils.gbon
+
+.. autoapi-nested-parse::
+
+   Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS.
+
+   Distributed under the terms of the BSD 3-Clause License.
+
+   SPDX-License-Identifier: BSD-3-Clause
+
+   Module contains: GBON-related functions
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   wmoutils.gbon.logger
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   wmoutils.gbon.get_resolution
+   wmoutils.gbon.resolution_to_influence_radius
+   wmoutils.gbon.get_influence_radius
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+
+.. py:function:: get_resolution(station_type: str, over: Optional[str] = 'land', high_density: Optional[bool] = False) -> int
+
+   Return the GBON horizontal resolution for a given station type.
+
+   :Parameters: * **station_type** (*str*) -- one of ['surface', 'upper-air'].
+                * **over** (*str, optional*) -- one of ['land', 'sea']. Defaults to 'land'.
+                * **high_density** (*bool, optional*) -- if True, will return the GBON high density value.
+                  Defaults to False.
+
+   :returns: the GBON horizontal resolution in km
+   :rtype: int
+
+
+.. py:function:: resolution_to_influence_radius(res: float) -> float
+
+   Convert a GBON horizontal resolution into an influence radius.
+
+
+.. py:function:: get_influence_radius(station_type: str, over: Optional[str] = 'land', high_density: Optional[bool] = False) -> int
+
+   Return the theoretical influence radius of a GBON station given its type.
+
+   :Parameters: * **station_type** (*str*) -- one of ['surface', 'upper-air'].
+                * **over** (*str, optional*) -- one of ['land', 'sea']. Defaults to 'land'.
+                * **high_density** (*bool, optional*) -- if True, will return the GBON high density value.
+                  Defaults to False.
+
+   :returns: the influence radius in km.
+   :rtype: int
+
+   The influence radius is computed as R = (GBON horizontal resolution)/2 * sqrt(2).
+   This derives from the fact that with a uniform distribution of GBON stations in a regular grid,
+   the most distant point will be located R km away.
+
+
+
