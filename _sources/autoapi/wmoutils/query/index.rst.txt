@@ -28,7 +28,7 @@ Functions
 
 .. autoapisummary::
 
-   wmoutils.query.build_wdqms_request
+   wmoutils.query.build_base_wdqms_request
    wmoutils.query.query_wdqms
    wmoutils.query.query_oscar_surface
 
@@ -38,27 +38,58 @@ Module Contents
 
 .. py:data:: logger
 
-.. py:function:: build_wdqms_request(station_type: str, interval: str) -> str
+.. py:function:: build_base_wdqms_request(module: str, station_type: str, interval: str, category: str) -> str
 
-   Return th string required for a WDQMS API request.
+   Return the string required for a WDQMS API request.
 
-   :Parameters: * **station_type** (*str*) -- either 'surface' or 'upper-air'.
+   :Parameters: * **module** (*str*) -- one of ['gbon', 'nwp']
+                * **station_type** (*str*) -- one of ['surface','upper-air', 'marine']
                 * **interval** (*str*) -- assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+                * **category** (*str*) -- one of ['availability', 'quality', 'timeliness']
 
-   Returns: str of API request
+   :returns: base URL of the API request
+   :rtype: str
+
+   .. warning::
+
+      Not all combinations of the above parameters are valid, and the function will raise an error
+      if an invalid combination is provided.
+
+   .. todo::
+
+      - Add support for GCOS
+      - Add support for Transition Monitoring
 
 
-.. py:function:: query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> polars.DataFrame
+.. py:function:: query_wdqms(module: str, station_type: str, interval: str, category: str, var_name: str, date: str, period: str = '00', baseline: str = 'OSCAR') -> polars.DataFrame
 
-   Send a request to WDQMS via its API, and return the text of the reply as a polars.DataFrame.
+   Send a request to WDQMS via its API, and return the reply as a polars.DataFrame.
 
-   :Parameters: * **station_type** (*str*) -- either 'surface' or 'upper-air'.
-                * **var_name** (*str*) -- name of variable, e.g. '2m Temperature'.
-                * **interval** (*str*) -- assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+   :Parameters: * **module** (*str*) -- one of ['gbon', 'nwp']
+                * **station_type** (*str*) -- one of ['surface','upper-air', 'marine']
+                * **interval** (*str*) -- assessment interval, i.e. one of ['monthly', 'daily', 'six_hour']
+                * **category** (*str*) -- one of ['availability', 'quality', 'timeliness']
+                * **var_name** (*str*) -- one of ['temperature', 'pressure', 'humidity', 'zonal_wind',
+                  'meridional_wind']
                 * **date** (*str*) -- date of the availability assessment, e.g. '2023-11'
+                * **period** (*str, optional*) -- one of ['00', '06', '12', '18']. Defaults to '00'.
+                  No effect unless if interval is 'six_hour'.
+                * **baseline** (*str, optional*) -- one of ['OSCAR', 'hourly']. Defaults to 'OSCAR'.
+                  No effect unless if module is 'nwp'.
 
-   Returns: polars.DataFrame
+   :returns: the reply from the API request.
+   :rtype: polars.DataFrame
 
+   .. rubric:: Examples
+
+   Querying the availability of temperature observations for surface stations in GBON for
+   January 2026:
+   ```
+   query_wdqms(module='gbon', station_type='surface', var_name='temperature',
+               interval='monthly', category='availability', date='2026-01')
+   ```
+
+   .. todo:: - Allow to query individual centers.
 
 
 .. py:function:: query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -> polars.DataFrame

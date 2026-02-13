@@ -39,13 +39,13 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=e0d84461"></script>
+    <script src="_static/documentation_options.js?v=0209d226"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'readme';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
-        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/switcher_config.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
@@ -224,10 +224,6 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -382,65 +378,19 @@
 </a>
 <section id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
-<p>Collection of utilities to interact with WMO ecosystems</p>
-<section id="development-setup-with-poetry">
-<h2>Development Setup with Poetry<a class="headerlink" href="#development-setup-with-poetry" title="Link to this heading">#</a></h2>
-<section id="building-the-project">
-<h3>Building the Project<a class="headerlink" href="#building-the-project" title="Link to this heading">#</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>wmoutils
-<span class="gp">$ </span>poetry<span class="w"> </span>install
-</pre></div>
-</div>
-</section>
-<section id="run-tests">
-<h3>Run Tests<a class="headerlink" href="#run-tests" title="Link to this heading">#</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pytest
-</pre></div>
-</div>
-</section>
-<section id="run-quality-tools">
-<h3>Run Quality Tools<a class="headerlink" href="#run-quality-tools" title="Link to this heading">#</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pylint<span class="w"> </span>wmoutils
-<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>mypy<span class="w"> </span>wmoutils
-</pre></div>
-</div>
-</section>
-<section id="generate-documentation">
-<h3>Generate Documentation<a class="headerlink" href="#generate-documentation" title="Link to this heading">#</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>doc/_build
-</pre></div>
-</div>
-<p>Then open the index.html file generated in <em>wmoutils/doc/_build/</em>.</p>
-</section>
-<section id="build-wheels">
-<h3>Build wheels<a class="headerlink" href="#build-wheels" title="Link to this heading">#</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>build
-</pre></div>
-</div>
-</section>
-</section>
-<section id="using-the-library">
-<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Link to this heading">#</a></h2>
-<p>To install wmoutils in your project, run this command in your terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>add<span class="w"> </span>wmoutils
-</pre></div>
-</div>
-<p>You can then use the library in your project through</p>
-<blockquote>
-<div><p>import wmoutils</p>
-</div></blockquote>
-</section>
-<section id="release-the-project">
-<h2>Release the Project<a class="headerlink" href="#release-the-project" title="Link to this heading">#</a></h2>
-<p>The project follows the <strong>GitOps concept</strong>: releases are triggered whenever a Git TAG is created.</p>
-<p>The TAG must follow the <a class="reference external" href="https://semver.org/">semantic version</a> format and <a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a> , otherwise the release task will fail.</p>
-<p>Follow these steps to create a new release:</p>
+<p>This package provides some WMO-related Python utility modules, including:</p>
 <ul class="simple">
-<li><p>Adapt CHANGELOG.rst with release information</p></li>
-<li><p>Adapt <code class="docutils literal notranslate"><span class="pre">doc/_static/switcher_config.json</span></code> adding the new documentation URL for the release</p></li>
-<li><p>Create a new Release in the Github project</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">wmoutils.query</span></code>: to extract relevant information from <a class="reference external" href="https://wdqms.wmo.int/">WDQMS</a> and</dt><dd><p><a class="reference external" href="https://oscar.wmo.int/surface/#/">OSCAR Surface</a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">wmoutils.gbon</span></code>: to extract relevant</dt><dd><p><cite>GBON &lt;https://wmo.int/activities/global-basic-observing-network-gbon&gt;`__</cite> values.</p>
+</dd>
+</dl>
+</li>
 </ul>
-</section>
 </section>
 
 
@@ -478,33 +428,6 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-setup-with-poetry">Development Setup with Poetry</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-project">Building the Project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-tests">Run Tests</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-quality-tools">Run Quality Tools</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-documentation">Generate Documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-wheels">Build wheels</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-library">Using the Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-the-project">Release the Project</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
             
           </div>
           <footer class="bd-footer-content">
@@ -525,7 +448,7 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-387a63b</div>
+wmoutils, version: dev-51922e5</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 13.02.2026.

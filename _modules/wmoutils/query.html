@@ -38,13 +38,13 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=e0d84461"></script>
+    <script src="../../_static/documentation_options.js?v=0209d226"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/wmoutils/query';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
-        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/switcher_config.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
@@ -381,6 +381,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 
 <span class="c1"># import from this module</span>
@@ -391,51 +392,133 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="build_wdqms_request">
-<a class="viewcode-back" href="../../autoapi/wmoutils/query/index.html#wmoutils.query.build_wdqms_request">[docs]</a>
+<div class="viewcode-block" id="build_base_wdqms_request">
+<a class="viewcode-back" href="../../autoapi/wmoutils/query/index.html#wmoutils.query.build_base_wdqms_request">[docs]</a>
 <span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">build_wdqms_request</span><span class="p">(</span><span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Return th string required for a WDQMS API request.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_base_wdqms_request</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Return the string required for a WDQMS API request.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        station_type (str): either &#39;surface&#39; or &#39;upper-air&#39;.</span>
+<span class="sd">        module (str): one of [&#39;gbon&#39;, &#39;nwp&#39;]</span>
+<span class="sd">        station_type (str): one of [&#39;surface&#39;,&#39;upper-air&#39;, &#39;marine&#39;]</span>
 <span class="sd">        interval (str): assessment interval, i.e. one of [&#39;monthly&#39;, &#39;daily&#39;, &#39;six_hour&#39;].</span>
+<span class="sd">        category (str): one of [&#39;availability&#39;, &#39;quality&#39;, &#39;timeliness&#39;]</span>
 
-<span class="sd">    Returns: str of API request</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        str: base URL of the API request</span>
+
+<span class="sd">    Warning:</span>
+<span class="sd">        Not all combinations of the above parameters are valid, and the function will raise an error</span>
+<span class="sd">        if an invalid combination is provided.</span>
+
+<span class="sd">    TODO:</span>
+<span class="sd">       - Add support for GCOS</span>
+<span class="sd">       - Add support for Transition Monitoring</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Basic sanity checks on the input parameters</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gbon&#39;</span><span class="p">,</span> <span class="s1">&#39;nwp&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;module&#39;: </span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="s1">&#39;daily&#39;</span><span class="p">,</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;interval&#39;: </span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;availability&#39;</span><span class="p">,</span> <span class="s1">&#39;quality&#39;</span><span class="p">,</span> <span class="s1">&#39;timeliness&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;category&#39;: </span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># For the station type, we need to map our own keys to those used by WDQQMS.</span>
     <span class="k">match</span> <span class="n">station_type</span><span class="p">:</span>
         <span class="k">case</span> <span class="s1">&#39;surface&#39;</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;synop&#39;</span>
         <span class="k">case</span> <span class="s1">&#39;upper-air&#39;</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;temp&#39;</span>
+        <span class="k">case</span> <span class="s1">&#39;marine&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;marine_surface&#39;</span>
         <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown station_type: </span><span class="si">{</span><span class="n">station_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;station_type&#39;: </span><span class="si">{</span><span class="n">station_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s1">/availability/?&#39;</span></div>
+    <span class="c1"># Raise some errors in case of know wrong parameter pairs</span>
+    <span class="c1"># GBON upper-air has no six-hour</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">station_type</span> <span class="o">==</span> <span class="s1">&#39;upper-air&#39;</span> <span class="ow">and</span> <span class="n">interval</span> <span class="o">==</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;Six-hourly assessments are not part of upper-air GBON,&#39;+&quot;</span>
+                            <span class="s2">&quot; cannot build request.&quot;</span><span class="p">)</span>
+    <span class="c1"># GBON has no marine stations</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">station_type</span> <span class="o">==</span> <span class="s1">&#39;marine&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;Marine stations are not part of GBON, cannot build request.&quot;</span><span class="p">)</span>
+    <span class="c1"># GBON can only have availability assessments</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">category</span> <span class="o">!=</span> <span class="s1">&#39;availability&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;GBON only has availability assessments, cannot build request.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s1">/?&#39;</span></div>
 
 
 
 <div class="viewcode-block" id="query_wdqms">
 <a class="viewcode-back" href="../../autoapi/wmoutils/query/index.html#wmoutils.query.query_wdqms">[docs]</a>
 <span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">query_wdqms</span><span class="p">(</span><span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">var_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Send a request to WDQMS via its API, and return the text of the reply as a polars.DataFrame.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_wdqms</span><span class="p">(</span>  <span class="c1"># pylint: disable=too-many-arguments, too-many-positional-arguments</span>
+                <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                <span class="n">var_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+                <span class="n">baseline</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;OSCAR&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Send a request to WDQMS via its API, and return the reply as a polars.DataFrame.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        station_type (str): either &#39;surface&#39; or &#39;upper-air&#39;.</span>
-<span class="sd">        var_name (str): name of variable, e.g. &#39;2m Temperature&#39;.</span>
-<span class="sd">        interval (str): assessment interval, i.e. one of [&#39;monthly&#39;, &#39;daily&#39;, &#39;six_hour&#39;].</span>
+<span class="sd">        module (str): one of [&#39;gbon&#39;, &#39;nwp&#39;]</span>
+<span class="sd">        station_type (str): one of [&#39;surface&#39;,&#39;upper-air&#39;, &#39;marine&#39;]</span>
+<span class="sd">        interval (str): assessment interval, i.e. one of [&#39;monthly&#39;, &#39;daily&#39;, &#39;six_hour&#39;]</span>
+<span class="sd">        category (str): one of [&#39;availability&#39;, &#39;quality&#39;, &#39;timeliness&#39;]</span>
+<span class="sd">        var_name (str): one of [&#39;temperature&#39;, &#39;pressure&#39;, &#39;humidity&#39;, &#39;zonal_wind&#39;,</span>
+<span class="sd">            &#39;meridional_wind&#39;]</span>
 <span class="sd">        date (str): date of the availability assessment, e.g. &#39;2023-11&#39;</span>
+<span class="sd">        period (str, optional): one of [&#39;00&#39;, &#39;06&#39;, &#39;12&#39;, &#39;18&#39;]. Defaults to &#39;00&#39;.</span>
+<span class="sd">            No effect unless if interval is &#39;six_hour&#39;.</span>
+<span class="sd">        baseline (str, optional): one of [&#39;OSCAR&#39;, &#39;hourly&#39;]. Defaults to &#39;OSCAR&#39;.</span>
+<span class="sd">            No effect unless if module is &#39;nwp&#39;.</span>
 
-<span class="sd">    Returns: polars.DataFrame</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        polars.DataFrame: the reply from the API request.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Querying the availability of temperature observations for surface stations in GBON for</span>
+<span class="sd">        January 2026:</span>
+<span class="sd">        ```</span>
+<span class="sd">        query_wdqms(module=&#39;gbon&#39;, station_type=&#39;surface&#39;, var_name=&#39;temperature&#39;,</span>
+<span class="sd">                    interval=&#39;monthly&#39;, category=&#39;availability&#39;, date=&#39;2026-01&#39;)</span>
+<span class="sd">        ```</span>
+
+<span class="sd">    TODO:</span>
+<span class="sd">        - Allow to query individual centers.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">build_wdqms_request</span><span class="p">(</span><span class="n">station_type</span><span class="p">,</span> <span class="n">interval</span><span class="p">),</span>
-                       <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
-                               <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">var_name</span><span class="p">,</span>
-                               <span class="s1">&#39;centers&#39;</span><span class="p">:</span> <span class="s1">&#39;all&#39;</span><span class="p">},</span>
+    <span class="c1"># Check if the date format is correct using datetime.strptime</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">valid_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">valid_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid date format: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">.&quot;</span> <span class="o">+</span>
+                                <span class="s2">&quot; Expected &#39;YYYY-MM-DD&#39; or &#39;YYYY-MM&#39;.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+
+    <span class="k">if</span> <span class="n">interval</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;monthly&#39;</span><span class="p">]:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">valid_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">valid_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Prepare the dict of parametters</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+              <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">var_name</span><span class="p">,</span>
+              <span class="s1">&#39;centers&#39;</span><span class="p">:</span> <span class="s1">&#39;COMBINED&#39;</span><span class="p">}</span>
+
+    <span class="c1"># In some cases, I need to add more keywords</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="o">==</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;nwp&#39;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;baseline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">build_base_wdqms_request</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">station_type</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span>
+                       <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
                        <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
     <span class="c1"># Issue an error if the request was not successful.</span>
@@ -550,7 +633,7 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-387a63b</div>
+wmoutils, version: dev-51922e5</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 13.02.2026.
