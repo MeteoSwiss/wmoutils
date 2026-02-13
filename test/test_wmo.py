@@ -6,11 +6,43 @@ Distributed under the terms of the BSD 3-Clause License.
 SPDX-License-Identifier: BSD-3-Clause
 """
 
-from wmoutils.wmo import dummy_func
+import polars as pl
+
+from wmoutils.errors import WmoutilsError
+from wmoutils.wmo import get_wdqms_request, query_wdqms
 
 
-def test_dummy_func():
-    """Test the correctness of dummy_func.
-    """
+def test_get_wdqms_request():
+    """ Test the get_wdqms_request function living in wmo.py """
 
-    assert dummy_func(3.2) == 3
+    # Test for surface station and monthly interval
+    request = get_wdqms_request(station_type='surface', interval='monthly')
+    assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/synop/monthly/availability/?'
+
+    # Test for upper-air station and daily interval
+    request = get_wdqms_request(station_type='upper-air', interval='daily')
+    assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/temp/daily/availability/?'
+
+    # Test for invalid station type
+    try:
+        get_wdqms_request(station_type='invalid', interval='monthly')
+        assert False, "Expected WmoutilsError for invalid station type"
+    except WmoutilsError as e:
+        assert str(e) == "Unknown station_type: invalid"
+
+
+def test_query_wdqms():
+    """ Test the query_wdqms function living in wmo.py """
+
+    # Test for valid input
+    df = query_wdqms(station_type='surface', var_name='temperature',
+                     interval='monthly', date='2023-11')
+    assert isinstance(df, pl.DataFrame)
+
+    # Test for failed request via invalid data
+    try:
+        query_wdqms(station_type='surface', var_name='temperature',
+                    interval='monthly', date='invalid-date')
+        assert False, "Expected WmoutilsError for failed request"
+    except WmoutilsError as e:
+        assert "WDQMS API request failed" in str(e)
