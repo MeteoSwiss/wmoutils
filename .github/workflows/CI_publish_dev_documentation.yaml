@@ -40,6 +40,8 @@ jobs:
     - name: Build documentation
       env:
         VERSION: dev
+        # use the switcher config from main to show all the versions (past and future)
+        VERSION_SWITCHER_CONFIG_URL: ../_static/switcher_config.json
         GITHUB_SHA: ${{ github.sha }}
       # Set the buildId to the first 7 digits of the commit hash
       run: BUILD_ID=$(echo ${GITHUB_SHA::7}) poetry run sphinx-build doc doc/_build
