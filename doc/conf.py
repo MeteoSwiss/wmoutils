@@ -1,6 +1,6 @@
 import os
 
-extensions = ["sphinx.ext.napoleon", "autoapi.extension", "sphinx.ext.viewcode"]
+extensions = ["sphinx.ext.napoleon", "autoapi.extension", "sphinx.ext.viewcode", "sphinx.ext.todo"]
 
 project = "wmoutils"
 copyright = "2026, MeteoSwiss"
