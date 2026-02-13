@@ -44,7 +44,9 @@ jobs:
         VERSION_SWITCHER_CONFIG_URL: ../_static/switcher_config.json
         GITHUB_SHA: ${{ github.sha }}
       # Set the buildId to the first 7 digits of the commit hash
-      run: BUILD_ID=$(echo ${GITHUB_SHA::7}) poetry run sphinx-build doc doc/_build
+      run: |
+        echo "VERSION: $VERSION VERSION_SWITCHER_CONFIG_URL: $VERSION_SWITCHER_CONFIG_URL"
+        BUILD_ID=$(echo ${GITHUB_SHA::7}) poetry run sphinx-build doc doc/_build
 
     - name: Publish documentation
       uses: peaceiris/actions-gh-pages@v3

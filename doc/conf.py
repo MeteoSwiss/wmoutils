@@ -4,7 +4,7 @@ extensions = ["sphinx.ext.napoleon", "autoapi.extension", "sphinx.ext.viewcode"]
 
 project = "wmoutils"
 copyright = "2026, MeteoSwiss"
-author = "Frédéric Vogt"
+author = "F.P.A. Vogt"
 
 version = os.getenv("VERSION", default="")
 build_id = os.getenv("BUILD_ID", default="")
@@ -20,6 +20,8 @@ html_title = project
 html_theme = "pydata_sphinx_theme"
 
 html_last_updated_fmt = "%d.%m.%Y"
+
+print("Current location: ", os.getcwd())
 
 html_theme_options = {
     "show_nav_level": 2,
