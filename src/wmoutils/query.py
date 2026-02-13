@@ -12,6 +12,7 @@ Module contains: functions to query external APIs, e.g. WDQMS and OSCAR/Surface.
 import logging
 from io import StringIO
 import requests
+from datetime import datetime
 import polars as pl
 
 # import from this module
@@ -23,45 +24,127 @@ logger = logging.getLogger(__name__)
 
 
 @log_func_call(logger)
-def build_wdqms_request(station_type: str, interval: str) -> str:
-    """ Return th string required for a WDQMS API request.
+def build_base_wdqms_request(module: str, station_type: str, interval: str, category: str) -> str:
+    """ Return the string required for a WDQMS API request.
 
     Args:
-        station_type (str): either 'surface' or 'upper-air'.
+        module (str): one of ['gbon', 'nwp']
+        station_type (str): one of ['surface','upper-air', 'marine']
         interval (str): assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+        category (str): one of ['availability', 'quality', 'timeliness']
 
-    Returns: str of API request
+    Returns:
+        str: base URL of the API request
+
+    Warning:
+        Not all combinations of the above parameters are valid, and the function will raise an error
+        if an invalid combination is provided.
+
+    TODO:
+       - Add support for GCOS
+       - Add support for Transition Monitoring
+
     """
 
+    # Basic sanity checks on the input parameters
+    if module not in ['gbon', 'nwp']:
+        raise WmoutilsError(f"Unknown 'module': {module}")
+    if interval not in ['monthly', 'daily', 'six_hour']:
+        raise WmoutilsError(f"Unknown 'interval': {interval}")
+    if category not in ['availability', 'quality', 'timeliness']:
+        raise WmoutilsError(f"Unknown 'category': {category}")
+
+    # For the station type, we need to map our own keys to those used by WDQQMS.
     match station_type:
         case 'surface':
             key = 'synop'
         case 'upper-air':
             key = 'temp'
+        case 'marine':
+            key = 'marine_surface'
         case _:
-            raise WmoutilsError(f"Unknown station_type: {station_type}")
+            raise WmoutilsError(f"Unknown 'station_type': {station_type}")
 
-    return f'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/{key}/{interval}/availability/?'
+    # Raise some errors in case of know wrong parameter pairs
+    # GBON upper-air has no six-hour
+    if module == 'gbon' and station_type == 'upper-air' and interval == 'six_hour':
+        raise WmoutilsError("Six-hourly assessments are not part of upper-air GBON,'+"
+                            " cannot build request.")
+    # GBON has no marine stations
+    if module == 'gbon' and station_type == 'marine':
+        raise WmoutilsError("Marine stations are not part of GBON, cannot build request.")
+    # GBON can only have availability assessments
+    if module == 'gbon' and category != 'availability':
+        raise WmoutilsError("GBON only has availability assessments, cannot build request.")
+
+    return f'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/{key}/{interval}/{category}/?'
 
 
 @log_func_call(logger)
-def query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> pl.DataFrame:
-    """ Send a request to WDQMS via its API, and return the text of the reply as a polars.DataFrame.
+def query_wdqms(  # pylint: disable=too-many-arguments, too-many-positional-arguments
+                module: str, station_type: str, interval: str, category: str,
+                var_name: str, date: str, period: str = '00',
+                baseline: str = 'OSCAR') -> pl.DataFrame:
+    """ Send a request to WDQMS via its API, and return the reply as a polars.DataFrame.
 
     Args:
-        station_type (str): either 'surface' or 'upper-air'.
-        var_name (str): name of variable, e.g. '2m Temperature'.
-        interval (str): assessment interval, i.e. one of ['monthly', 'daily', 'six_hour'].
+        module (str): one of ['gbon', 'nwp']
+        station_type (str): one of ['surface','upper-air', 'marine']
+        interval (str): assessment interval, i.e. one of ['monthly', 'daily', 'six_hour']
+        category (str): one of ['availability', 'quality', 'timeliness']
+        var_name (str): one of ['temperature', 'pressure', 'humidity', 'zonal_wind',
+            'meridional_wind']
         date (str): date of the availability assessment, e.g. '2023-11'
+        period (str, optional): one of ['00', '06', '12', '18']. Defaults to '00'.
+            No effect unless if interval is 'six_hour'.
+        baseline (str, optional): one of ['OSCAR', 'hourly']. Defaults to 'OSCAR'.
+            No effect unless if module is 'nwp'.
 
-    Returns: polars.DataFrame
+    Returns:
+        polars.DataFrame: the reply from the API request.
+
+    Examples:
+        Querying the availability of temperature observations for surface stations in GBON for
+        January 2026:
+        ```
+        query_wdqms(module='gbon', station_type='surface', var_name='temperature',
+                    interval='monthly', category='availability', date='2026-01')
+        ```
+
+    TODO:
+        - Allow to query individual centers.
 
     """
 
-    req = requests.get(build_wdqms_request(station_type, interval),
-                       params={'date': date,
-                               'variable': var_name,
-                               'centers': 'all'},
+    # Check if the date format is correct using datetime.strptime
+    try:
+        valid_date = datetime.strptime(date, '%Y-%m-%d')
+    except ValueError:
+        try:
+            valid_date = datetime.strptime(date, '%Y-%m')
+        except ValueError as exc:
+            raise WmoutilsError(f"Invalid date format: {date}." +
+                                " Expected 'YYYY-MM-DD' or 'YYYY-MM'.") from exc
+
+    if interval in ['monthly']:
+        date = valid_date.strftime('%Y-%m')
+    else:
+        date = valid_date.strftime('%Y-%m-%d')
+
+    # Prepare the dict of parametters
+    params = {'date': date,
+              'variable': var_name,
+              'centers': 'COMBINED'}
+
+    # In some cases, I need to add more keywords
+    if interval == 'six_hour':
+        params['period'] = period
+
+    if module == 'nwp':
+        params['baseline'] = baseline
+
+    req = requests.get(build_base_wdqms_request(module, station_type, interval, category),
+                       params=params,
                        timeout=10)
 
     # Issue an error if the request was not successful.

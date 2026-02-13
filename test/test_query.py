@@ -9,43 +9,46 @@ SPDX-License-Identifier: BSD-3-Clause
 import polars as pl
 
 from wmoutils.errors import WmoutilsError
-from wmoutils.query import build_wdqms_request, query_wdqms, query_oscar_surface
+from wmoutils.query import build_base_wdqms_request, query_wdqms, query_oscar_surface
 
 
-def test_build_wdqms_request():
-    """ Test the build_wdqms_request function living in query.py """
+def test_build_base_wdqms_request():
+    """ Test the build_base_wdqms_request function living in query.py """
 
     # Test for surface station and monthly interval
-    request = build_wdqms_request(station_type='surface', interval='monthly')
+    request = build_base_wdqms_request(module='gbon', station_type='surface', interval='monthly',
+                                       category='availability')
     assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/synop/monthly/availability/?'
 
     # Test for upper-air station and daily interval
-    request = build_wdqms_request(station_type='upper-air', interval='daily')
+    request = build_base_wdqms_request(module='gbon', station_type='upper-air', interval='daily',
+                                       category='availability')
     assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/temp/daily/availability/?'
 
     # Test for invalid station type
     try:
-        build_wdqms_request(station_type='invalid', interval='monthly')
+        build_base_wdqms_request(module='gbon', station_type='invalid', interval='monthly',
+                                 category='availability')
         assert False, "Expected WmoutilsError for invalid station type"
     except WmoutilsError as e:
-        assert str(e) == "Unknown station_type: invalid"
+        assert str(e) == "Unknown 'station_type': invalid"
 
 
 def test_query_wdqms():
     """ Test the query_wdqms function living in query.py """
 
     # Test for valid input
-    df = query_wdqms(station_type='surface', var_name='temperature',
-                     interval='monthly', date='2023-11')
+    df = query_wdqms(module='gbon', station_type='surface', var_name='temperature',
+                     interval='monthly', category='availability', date='2023-11')
     assert isinstance(df, pl.DataFrame)
 
     # Test for failed request via invalid data
     try:
-        query_wdqms(station_type='surface', var_name='temperature',
-                    interval='monthly', date='invalid-date')
-        assert False, "Expected WmoutilsError for failed request"
+        query_wdqms(module='gbon', station_type='surface', var_name='temperature',
+                    interval='monthly', category='availability', date='invalid-date')
+        assert False, "Expected WmoutilsError for bad date request"
     except WmoutilsError as e:
-        assert "WDQMS API request failed" in str(e)
+        assert "Invalid date format" in str(e)
 
 
 def test_query_oscar_surface():
