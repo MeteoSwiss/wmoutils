@@ -76,7 +76,7 @@ def query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> p
 
 
 @log_func_call(logger)
-def query_oscar_surface(extra_prms: list = None, **search_params,) -> pl.DataFrame:
+def query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -> pl.DataFrame:
     """ Utility function to query OSCAR/Surface and extract relevant station information.
 
     Args:
@@ -131,6 +131,6 @@ def query_oscar_surface(extra_prms: list = None, **search_params,) -> pl.DataFra
                 for item in req.json()['stationSearchResults']]
 
     # ... and convert it to a bona-fide polars dataframe.
-    stations = pl.DataFrame(stations, schema=prms_out, orient='row')
+    stations_df = pl.DataFrame(stations, schema=prms_out, orient='row')
 
-    return stations
+    return stations_df

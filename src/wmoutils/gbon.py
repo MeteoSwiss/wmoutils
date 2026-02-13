@@ -42,7 +42,6 @@ def get_resolution(station_type: str, over: Optional[str] = 'land',
                 case 'land':
                     if high_density:
                         return 100
-
                     return 200
                 case 'sea':
                     return 500
@@ -71,7 +70,7 @@ def resolution_to_influence_radius(res: float) -> float:
 
 @log_func_call(logger)
 def get_influence_radius(station_type: str, over: Optional[str] = 'land',
-                         high_density: Optional[bool] = False) -> int:
+                         high_density: Optional[bool] = False) -> float:
     """ Return the theoretical influence radius of a GBON station given its type.
 
     Args:
@@ -81,7 +80,7 @@ def get_influence_radius(station_type: str, over: Optional[str] = 'land',
             Defaults to False.
 
     Returns:
-        int: the influence radius in km.
+        float: the influence radius in km.
 
     The influence radius is computed as R = (GBON horizontal resolution)/2 * sqrt(2).
     This derives from the fact that with a uniform distribution of GBON stations in a regular grid,
