@@ -3,5 +3,11 @@
     "name": "dev (unstable)",
     "version": "dev",
     "url": "/wmoutils/"
+  },
+  {
+    "name": "0.1.0",
+    "version": "0.1.0",
+    "url": "/wmoutils/0.1.0/"
   }
+
 ]

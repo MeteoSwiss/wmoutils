@@ -19,7 +19,7 @@ templates_path = ["_templates"]
 html_title = project
 html_theme = "pydata_sphinx_theme"
 
-html_last_updated_fmt = "%d.%m.%Y"
+html_last_updated_fmt = "%Y-%m-%d"
 
 print("\nCurrent location: ", os.getcwd())
 print("json_url", os.getenv("VERSION_SWITCHER_CONFIG_URL", "_static/switcher_config.json"), '\n')
