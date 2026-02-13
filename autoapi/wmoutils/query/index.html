@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=8894e5f1"></script>
+    <script src="../../../_static/documentation_options.js?v=ce04418b"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/wmoutils/query/index';</script>
@@ -434,7 +434,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="wmoutils.query.build_wdqms_request">
-<span class="sig-name descname"><span class="pre">build_wdqms_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#wmoutils.query.build_wdqms_request" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">build_wdqms_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/wmoutils/query.html#build_wdqms_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wmoutils.query.build_wdqms_request" title="Link to this definition">#</a></dt>
 <dd><p>Return th string required for a WDQMS API request.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -449,7 +449,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="wmoutils.query.query_wdqms">
-<span class="sig-name descname"><span class="pre">query_wdqms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="headerlink" href="#wmoutils.query.query_wdqms" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">query_wdqms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/wmoutils/query.html#query_wdqms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wmoutils.query.query_wdqms" title="Link to this definition">#</a></dt>
 <dd><p>Send a request to WDQMS via its API, and return the text of the reply as a polars.DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -466,7 +466,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="wmoutils.query.query_oscar_surface">
-<span class="sig-name descname"><span class="pre">query_oscar_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_prms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">search_params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="headerlink" href="#wmoutils.query.query_oscar_surface" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">query_oscar_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_prms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">search_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/wmoutils/query.html#query_oscar_surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wmoutils.query.query_oscar_surface" title="Link to this definition">#</a></dt>
 <dd><p>Utility function to query OSCAR/Surface and extract relevant station information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -574,7 +574,7 @@ query_oscar_surface(territoryName=’CHE’,facilityType=’LandFixed’)</p>
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-fa4704a</div>
+wmoutils, version: dev-39e6c35</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 13.02.2026.

@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=8894e5f1"></script>
+    <script src="../../_static/documentation_options.js?v=ce04418b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/wmoutils/logger';</script>
@@ -407,7 +407,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; This is the actual function decorator. &quot;&quot;&quot;</span>
 
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>  <span class="c1"># This black magic is required for Sphinx to still pickup the func docstrings.</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">inner_deco</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">inner_deco</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot; The core function, where the magic happens. &quot;&quot;&quot;</span>
 
             <span class="c1"># Extract all the arguments and named-arguments fed to the function.</span>
@@ -468,7 +468,7 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-fa4704a</div>
+wmoutils, version: dev-39e6c35</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 13.02.2026.

@@ -56,7 +56,7 @@ Module Contents
    Convert a GBON horizontal resolution into an influence radius.
 
 
-.. py:function:: get_influence_radius(station_type: str, over: Optional[str] = 'land', high_density: Optional[bool] = False) -> int
+.. py:function:: get_influence_radius(station_type: str, over: Optional[str] = 'land', high_density: Optional[bool] = False) -> float
 
    Return the theoretical influence radius of a GBON station given its type.
 
@@ -66,7 +66,7 @@ Module Contents
                   Defaults to False.
 
    :returns: the influence radius in km.
-   :rtype: int
+   :rtype: float
 
    The influence radius is computed as R = (GBON horizontal resolution)/2 * sqrt(2).
    This derives from the fact that with a uniform distribution of GBON stations in a regular grid,

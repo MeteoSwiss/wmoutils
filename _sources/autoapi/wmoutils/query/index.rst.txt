@@ -61,7 +61,7 @@ Module Contents
 
 
 
-.. py:function:: query_oscar_surface(extra_prms: list = None, **search_params) -> polars.DataFrame
+.. py:function:: query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -> polars.DataFrame
 
    Utility function to query OSCAR/Surface and extract relevant station information.
 
