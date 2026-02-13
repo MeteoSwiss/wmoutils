@@ -7,12 +7,25 @@ SPDX-License-Identifier: BSD-3-Clause
 """
 
 from wmoutils.gbon import get_resolution, get_influence_radius, resolution_to_influence_radius
+from wmoutils.errors import WmoutilsError
 
 
 def test_get_resolution():
     """ Test the get_resolution() function. """
 
     assert get_resolution('surface', over='land', high_density=False) == 200
+    assert get_resolution('surface', over='land', high_density=True) == 100
+    assert get_resolution('surface', over='sea', high_density=False) == 500
+    assert get_resolution('upper-air', over='land', high_density=False) == 500
+    assert get_resolution('upper-air', over='land', high_density=True) == 200
+    assert get_resolution('upper-air', over='sea', high_density=False) == 1000
+
+    # Assert the errors
+    try:
+        get_resolution('invalid-station-type')
+        assert False, "Expected WmoutilsError for invalid station type"
+    except WmoutilsError as e:
+        assert str(e) == 'Unrecognized "station_type" value: invalid-station-type'
 
 
 def test_resolution_to_influence_radius():
