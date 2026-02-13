@@ -11,8 +11,8 @@ Module contains: functions to query external APIs, e.g. WDQMS and OSCAR/Surface.
 # Import from Python
 import logging
 from io import StringIO
-import requests
 from datetime import datetime
+import requests
 import polars as pl
 
 # import from this module
