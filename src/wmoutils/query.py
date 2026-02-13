@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 
 @log_func_call(logger)
-def get_wdqms_request(station_type: str, interval: str) -> str:
+def build_wdqms_request(station_type: str, interval: str) -> str:
     """ Return th string required for a WDQMS API request.
 
     Args:
@@ -56,7 +56,7 @@ def query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> p
 
     """
 
-    req = requests.get(get_wdqms_request(station_type, interval),
+    req = requests.get(build_wdqms_request(station_type, interval),
                        params={'date': date,
                                'variable': var_name,
                                'centers': 'all'},

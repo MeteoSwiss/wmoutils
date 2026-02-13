@@ -9,30 +9,30 @@ SPDX-License-Identifier: BSD-3-Clause
 import polars as pl
 
 from wmoutils.errors import WmoutilsError
-from wmoutils.wmo import get_wdqms_request, query_wdqms, query_oscar_surface
+from wmoutils.query import build_wdqms_request, query_wdqms, query_oscar_surface
 
 
-def test_get_wdqms_request():
-    """ Test the get_wdqms_request function living in wmo.py """
+def test_build_wdqms_request():
+    """ Test the build_wdqms_request function living in query.py """
 
     # Test for surface station and monthly interval
-    request = get_wdqms_request(station_type='surface', interval='monthly')
+    request = build_wdqms_request(station_type='surface', interval='monthly')
     assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/synop/monthly/availability/?'
 
     # Test for upper-air station and daily interval
-    request = get_wdqms_request(station_type='upper-air', interval='daily')
+    request = build_wdqms_request(station_type='upper-air', interval='daily')
     assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/temp/daily/availability/?'
 
     # Test for invalid station type
     try:
-        get_wdqms_request(station_type='invalid', interval='monthly')
+        build_wdqms_request(station_type='invalid', interval='monthly')
         assert False, "Expected WmoutilsError for invalid station type"
     except WmoutilsError as e:
         assert str(e) == "Unknown station_type: invalid"
 
 
 def test_query_wdqms():
-    """ Test the query_wdqms function living in wmo.py """
+    """ Test the query_wdqms function living in query.py """
 
     # Test for valid input
     df = query_wdqms(station_type='surface', var_name='temperature',
