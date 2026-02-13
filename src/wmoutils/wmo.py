@@ -71,3 +71,64 @@ def query_wdqms(station_type: str, var_name: str, interval: str, date: str) -> p
     pdf = pl.read_csv(StringIO(req.text))
 
     return pdf
+
+
+@log_func_call(logger)
+def query_oscar_surface(extra_prms: list = None, **search_params,) -> pl.DataFrame:
+    """ Utility function to query OSCAR/Surface and extract relevant station information.
+
+    Args:
+        extra_prms (list, optional): list of extra parameters to extract from the API reply in
+            addition to the default ones.
+        **search_params: search keyword-arguments-and-value-pairs, to be fed directly to the
+            'params' keyword of the API requests.get() function.
+
+    Returns:
+        pl.DataFrame: containing the 'wigosId', 'Station name', 'longitude', and 'latitude' columns,
+            and any extra parameters specified in the 'extra_prms' argument.
+
+    Example:
+        To query a station with a specific wigosId:
+        query_oscar_surface(wigosId='0-20000-0-06610')
+
+        To query all fixed surface stations in Switzerland:
+        query_oscar_surface(territoryName='CHE',facilityType='LandFixed')
+
+    API Reference:
+       https://oscar.wmo.int/surface/#/faq/
+
+    """
+
+    # Launch the API request ...
+    req = requests.get('https://oscar.wmo.int/surface/rest/api/search/station',
+                       params=search_params,
+                       timeout=10)
+
+    # If something went wrong with the request, let's issue an error.
+    if req.status_code != 200:
+        raise WmoutilsError(f"OSCAR API request failed with status code {req.status_code}" +
+                            f" and message: {req.text}")
+
+    # Set the default parameters to extract from the API reply
+    prms_out = ['wigosId', 'name', 'longitude', 'latitude']
+
+    # Deal with possible additional prms
+    if extra_prms is not None:
+        # Make sure I got a list of strings, and not something else.
+        if not isinstance(extra_prms, list) or not all(isinstance(item, str)
+                                                       for item in extra_prms):
+            raise WmoutilsError("The 'extra_prms' argument must be a list of strings.")
+
+        # Very well, let's add the extra parameters to the list of parameters to extract.
+        prms_out += extra_prms
+
+    # Extract the necessary information from the reply ...
+    stations = [[item[prm] for prm in prms_out] if 'wigosId' in item.keys()
+                # If wigosId is missing, fill it with None
+                else [None] + [item[prm] for prm in prms_out[1:]]
+                for item in req.json()['stationSearchResults']]
+
+    # ... and convert it to a bona-fide polars dataframe.
+    stations = pl.DataFrame(stations, schema=prms_out, orient='row')
+
+    return stations

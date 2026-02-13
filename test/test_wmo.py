@@ -9,7 +9,7 @@ SPDX-License-Identifier: BSD-3-Clause
 import polars as pl
 
 from wmoutils.errors import WmoutilsError
-from wmoutils.wmo import get_wdqms_request, query_wdqms
+from wmoutils.wmo import get_wdqms_request, query_wdqms, query_oscar_surface
 
 
 def test_get_wdqms_request():
@@ -46,3 +46,20 @@ def test_query_wdqms():
         assert False, "Expected WmoutilsError for failed request"
     except WmoutilsError as e:
         assert "WDQMS API request failed" in str(e)
+
+
+def test_query_oscar_surface():
+    """ Test that we can query OSCAR Surface, and get proper results. """
+
+    # Query a single station
+    out = query_oscar_surface(wigosId='0-20000-0-06610')
+
+    assert len(out) == 1
+    assert out['name'][0] == 'PAYERNE (6610-0)'  # pylint: disable=unsubscriptable-object
+    assert out['wigosId'][0] == '0-20000-0-06610'  # pylint: disable=unsubscriptable-object
+
+    # Query stations with no wigosId, and make sure the wigosId column is filled with None
+    # Argentina has 6 of them as of 2026-02-13
+    out = query_oscar_surface(territoryName='ARG', facilityType='LandFixed')
+    assert 'wigosId' in out.columns
+    assert out['wigosId'].null_count() > 0  # pylint: disable=unsubscriptable-object
