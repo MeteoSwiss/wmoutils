@@ -21,7 +21,8 @@ html_theme = "pydata_sphinx_theme"
 
 html_last_updated_fmt = "%d.%m.%Y"
 
-print("Current location: ", os.getcwd())
+print("\nCurrent location: ", os.getcwd())
+print("json_url", os.getenv("VERSION_SWITCHER_CONFIG_URL", "_static/switcher_config.json"),'\n')
 
 html_theme_options = {
     "show_nav_level": 2,
