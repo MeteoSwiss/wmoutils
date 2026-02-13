@@ -42,8 +42,8 @@ def get_resolution(station_type: str, over: Optional[str] = 'land',
                 case 'land':
                     if high_density:
                         return 100
-                    else:
-                        return 200
+
+                    return 200
                 case 'sea':
                     return 500
                 case _:
@@ -53,8 +53,7 @@ def get_resolution(station_type: str, over: Optional[str] = 'land',
                 case 'land':
                     if high_density:
                         return 200
-                    else:
-                        return 500
+                    return 500
                 case 'sea':
                     return 1000
                 case _:
