@@ -47,5 +47,6 @@ html_sidebars = {"usage": [], "changelog": [], "migration_guide": [], "readme": 
 napoleon_use_param = False  # improve parameters description
 add_module_names = False  # avoid the display of redundant module names
 
-autoapi_dirs = ["../wmoutils"]
-autoapi_options = ["members", "undoc-members", "show-inheritance", "show-module-summary", "imported-members"]
+autoapi_dirs = ["../src/wmoutils"]
+autoapi_options = ["members", "undoc-members", "show-inheritance", "show-module-summary",
+                   "imported-members"]
