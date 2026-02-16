@@ -70,6 +70,7 @@ def resolution_to_influence_radius(res: float) -> float:
 @log_func_call(logger)
 def get_influence_radius(station_type: str, over: str = 'land',
                          high_density: bool = False) -> float:
+    # pylint: disable=line-too-long
     """ Returns the so-called radius of influence of a GBON station given its type.
 
     The radius of influence is computed as R = (GBON horizontal resolution)/2 x sqrt(2), and
@@ -118,7 +119,7 @@ def get_influence_radius(station_type: str, over: str = 'land',
         which represent the longest distance between any geographical point and its closest GBON
         station.
 
-        .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf
+        .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf.
 
     """
 
