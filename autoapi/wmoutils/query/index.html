@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=71df528d"></script>
+    <script src="../../../_static/documentation_options.js?v=9cd68406"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/wmoutils/query/index';</script>
@@ -56,7 +56,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="dev" />
-    <meta name="docbuild:last-update" content="2026-02-13"/>
+    <meta name="docbuild:last-update" content="2026-02-16"/>
   </head>
   
   
@@ -141,8 +141,22 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../readme.html">
-    Getting Started
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../gbon.html">
+    The gbon module
   </a>
 </li>
 
@@ -254,8 +268,22 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../readme.html">
-    Getting Started
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../gbon.html">
+    The gbon module
   </a>
 </li>
 
@@ -416,10 +444,10 @@
 <td><p>Return the string required for a WDQMS API request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#wmoutils.query.query_wdqms" title="wmoutils.query.query_wdqms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query_wdqms</span></code></a>(→ polars.DataFrame)</p></td>
-<td><p>Send a request to WDQMS via its API, and return the reply as a polars.DataFrame.</p></td>
+<td><p>Utility function to query WDQMS via its API, and format the reply as a polars.DataFrame.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#wmoutils.query.query_oscar_surface" title="wmoutils.query.query_oscar_surface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query_oscar_surface</span></code></a>(→ polars.DataFrame)</p></td>
-<td><p>Utility function to query OSCAR/Surface and extract relevant station information.</p></td>
+<td><p>Utility function to query OSCAR/Surface and extract relevant station information and return</p></td>
 </tr>
 </tbody>
 </table>
@@ -457,79 +485,114 @@
 <p>Not all combinations of the above parameters are valid, and the function will raise an error
 if an invalid combination is provided.</p>
 </div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add support for GCOS</p></li>
+<li><p>Add support for Transition Monitoring</p></li>
+</ul>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="wmoutils.query.query_wdqms">
 <span class="sig-name descname"><span class="pre">query_wdqms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'00'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'OSCAR'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/wmoutils/query.html#query_wdqms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wmoutils.query.query_wdqms" title="Link to this definition">#</a></dt>
-<dd><p>Send a request to WDQMS via its API, and return the reply as a polars.DataFrame.</p>
+<dd><p>Utility function to query WDQMS via its API, and format the reply as a polars.DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>module</strong> (<em>str</em>) – one of [‘gbon’, ‘nwp’]</p></li>
-<li><p><strong>station_type</strong> (<em>str</em>) – one of [‘surface’,’upper-air’, ‘marine’]</p></li>
-<li><p><strong>interval</strong> (<em>str</em>) – assessment interval, i.e. one of [‘monthly’, ‘daily’, ‘six_hour’]</p></li>
-<li><p><strong>category</strong> (<em>str</em>) – one of [‘availability’, ‘quality’, ‘timeliness’]</p></li>
-<li><p><strong>var_name</strong> (<em>str</em>) – one of [‘temperature’, ‘pressure’, ‘humidity’, ‘zonal_wind’,
-‘meridional_wind’]</p></li>
-<li><p><strong>date</strong> (<em>str</em>) – date of the availability assessment, e.g. ‘2023-11’</p></li>
-<li><p><strong>period</strong> (<em>str, optional</em>) – one of [‘00’, ‘06’, ‘12’, ‘18’]. Defaults to ‘00’.
-No effect unless if interval is ‘six_hour’.</p></li>
-<li><p><strong>baseline</strong> (<em>str, optional</em>) – one of [‘OSCAR’, ‘hourly’]. Defaults to ‘OSCAR’.
-No effect unless if module is ‘nwp’.</p></li>
+<li><p><strong>module</strong> (<em>str</em>) – one of <code class="docutils literal notranslate"><span class="pre">['gbon',</span> <span class="pre">'nwp']</span></code>.</p></li>
+<li><p><strong>station_type</strong> (<em>str</em>) – one of <code class="docutils literal notranslate"><span class="pre">['surface',</span> <span class="pre">'upper-air',</span> <span class="pre">'marine']</span></code>.</p></li>
+<li><p><strong>interval</strong> (<em>str</em>) – assessment interval, i.e. one of <code class="docutils literal notranslate"><span class="pre">['monthly',</span> <span class="pre">'daily',</span> <span class="pre">'six_hour']</span></code>.</p></li>
+<li><p><strong>category</strong> (<em>str</em>) – one of <code class="docutils literal notranslate"><span class="pre">['availability',</span> <span class="pre">'quality',</span> <span class="pre">'timeliness']</span></code>.</p></li>
+<li><p><strong>var_name</strong> (<em>str</em>) – one of <code class="docutils literal notranslate"><span class="pre">['temperature',</span> <span class="pre">'pressure',</span> <span class="pre">'humidity',</span> <span class="pre">'zonal_wind',</span>
+<span class="pre">'meridional_wind']</span></code>.</p></li>
+<li><p><strong>date</strong> (<em>str</em>) – date of the availability assessment, e.g. <code class="docutils literal notranslate"><span class="pre">'2023-11'</span></code>.</p></li>
+<li><p><strong>period</strong> (<em>str, optional</em>) – one of <code class="docutils literal notranslate"><span class="pre">['00',</span> <span class="pre">'06',</span> <span class="pre">'12',</span> <span class="pre">'18']</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">'00'</span></code>.
+No effect unless if interval is <code class="docutils literal notranslate"><span class="pre">'six_hour'</span></code>.</p></li>
+<li><p><strong>baseline</strong> (<em>str, optional</em>) – one of <code class="docutils literal notranslate"><span class="pre">['OSCAR',</span> <span class="pre">'hourly']</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">'OSCAR'</span></code>.
+No effect unless if module is <code class="docutils literal notranslate"><span class="pre">'nwp'</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the reply from the API request.</p>
+<dd class="field-even"><p>the reply from the API request formatted as a polars DataFrame.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>polars.DataFrame</p>
 </dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../errors/index.html#wmoutils.errors.WmoutilsError" title="wmoutils.errors.WmoutilsError"><strong>WmoutilsError</strong></a> – if the API request fails, or if the combination of input parameters is
+invalid.</p>
+</dd>
 </dl>
 <p class="rubric">Examples</p>
 <p>Querying the availability of temperature observations for surface stations in GBON for
-January 2026:
-<a href="#id2"><span class="problematic" id="id3">``</span></a>`
-query_wdqms(module=’gbon’, station_type=’surface’, var_name=’temperature’,</p>
-<blockquote>
-<div><p>interval=’monthly’, category=’availability’, date=’2026-01’)</p>
-</div></blockquote>
-<p><a href="#id4"><span class="problematic" id="id5">``</span></a><a href="#id6"><span class="problematic" id="id7">`</span></a></p>
+January 2026:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_wdqms</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">query_wdqms</span><span class="p">(</span><span class="n">module</span><span class="o">=</span><span class="s1">&#39;gbon&#39;</span><span class="p">,</span> <span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+                  <span class="n">interval</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;availability&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026-01&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Allow to query individual NWP centers.</p></li>
+<li><p>Add support for GCOS and Transition Monitoring.</p></li>
+</ul>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="wmoutils.query.query_oscar_surface">
 <span class="sig-name descname"><span class="pre">query_oscar_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_prms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">search_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">polars.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/wmoutils/query.html#query_oscar_surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wmoutils.query.query_oscar_surface" title="Link to this definition">#</a></dt>
-<dd><p>Utility function to query OSCAR/Surface and extract relevant station information.</p>
+<dd><p>Utility function to query OSCAR/Surface and extract relevant station information and return
+them as a polars DataFrame.</p>
+<p>This function acts as a simple wrapper around the
+<a class="reference external" href="https://oscar.wmo.int/surface/#/faq/">OSCAR/Surface API</a>: it merely forwards the keyword
+arguments it receives to the API, and extracts a few relevant parameters from the reply into a
+polars DataFrame.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does <strong>not</strong> check the validity of the keywords arguments. It is up to the
+user to ensure the keyword arguments are valid and supported by the OSCAR/Surface API.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference external" href="https://oscar.wmo.int/surface/#/faq/">OSCAR/Surface API Reference</a> for the full
+range of supported keyword arguments.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>extra_prms</strong> (<em>list, optional</em>) – list of extra parameters to extract from the API reply in
-addition to the default ones.</p></li>
+<li><p><strong>extra_prms</strong> (<em>list, optional</em>) – list of additional parameters to extract from the API reply, in
+addition to <code class="docutils literal notranslate"><span class="pre">['wigosId',</span> <span class="pre">'name',</span> <span class="pre">'longitude',</span> <span class="pre">'latitude']</span></code>.</p></li>
 <li><p><strong>**search_params</strong> – search keyword-arguments-and-value-pairs, to be fed directly to the
-‘params’ keyword of the API requests.get() function.</p></li>
+<code class="docutils literal notranslate"><span class="pre">params</span></code> keyword of the API <code class="docutils literal notranslate"><span class="pre">requests.get()</span></code> function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>containing the ‘wigosId’, ‘Station name’, ‘longitude’, and ‘latitude’ columns,</dt><dd><p>and any extra parameters specified in the ‘extra_prms’ argument.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>DataFrame containing the API response data.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pl.DataFrame</p>
 </dd>
-</dl>
-<p class="rubric">Example</p>
-<p>To query a station with a specific wigosId:
-query_oscar_surface(wigosId=’0-20000-0-06610’)</p>
-<p>To query all fixed surface stations in Switzerland:
-query_oscar_surface(territoryName=’CHE’,facilityType=’LandFixed’)</p>
-<dl class="simple">
-<dt>API Reference:</dt><dd><p><a class="reference external" href="https://oscar.wmo.int/surface/#/faq/">https://oscar.wmo.int/surface/#/faq/</a></p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../errors/index.html#wmoutils.errors.WmoutilsError" title="wmoutils.errors.WmoutilsError"><strong>WmoutilsError</strong></a> – if the API request fails, or if the <code class="docutils literal notranslate"><span class="pre">extra_prms</span></code> argument is not a list of
+strings.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>To query a station with a specific wigosId:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_oscar_surface</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">query_oscar_surface</span><span class="p">(</span><span class="n">wigosId</span><span class="o">=</span><span class="s1">&#39;0-20000-0-06610&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To query all fixed surface stations in Switzerland:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">query_oscar_surface</span><span class="p">(</span><span class="n">territoryName</span><span class="o">=</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span><span class="n">facilityType</span><span class="o">=</span><span class="s1">&#39;LandFixed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
@@ -607,10 +670,10 @@ query_oscar_surface(territoryName=’CHE’,facilityType=’LandFixed’)</p>
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-2b32b12</div>
+wmoutils, version: dev-4ec4d3b</div>
       
         <div class="footer-item"><p class="last-updated">
-  Last updated on 2026-02-13.
+  Last updated on 2026-02-16.
   <br/>
 </p></div>
       
