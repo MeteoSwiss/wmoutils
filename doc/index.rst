@@ -37,7 +37,7 @@ With wmoutils, you can:
 
 You can refer to the pages linked below for more details on these different functionalities.
 
-If yopu face unexpected trouble while using wmoutils, please report the issue on the
+If you face unexpected trouble while using wmoutils, please report the issue on the
 `GitHub repository`_.
 
 If you wish to contribute to the development of wmoutils, please refer to the

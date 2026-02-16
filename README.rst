@@ -20,12 +20,23 @@
 Getting Started
 ===============
 
-This package provides some WMO-related Python utility modules, including:
+The wmoutils package provides some WMO-related Python utility modules, including:
 
-* ``wmoutils.query``: to extract relevant information from `WDQMS <https://wdqms.wmo.int/>`__ and
-    `OSCAR Surface <https://oscar.wmo.int/surface/#/>`__.
-* ``wmoutils.gbon``: to extract relevant
-    `GBON <https://wmo.int/activities/global-basic-observing-network-gbon>`__` values.
+    * ``wmoutils.query``, to extract relevant information from `WDQMS <https://wdqms.wmo.int/>`__ and
+        `OSCAR Surface <https://oscar.wmo.int/surface/#/>`__.
+    * ``wmoutils.gbon``, to extract relevant
+        `GBON <https://wmo.int/activities/global-basic-observing-network-gbon>`__` values.
+
+
+For instructions on how to install and use the wmoutils package, please refer to the full
+`documentation <https://meteo-swiss.github.io/wmoutils/>`_.
+
+Unexpected behavior and problems arising while using wmoutils can be reported and tracked using
+`GitHub issues <https://github.com/MeteoSwiss/wmoutils/issues>`_.
+
+If you wish to contribute to the development of wmoutils, please refer to the
+`contributing guidelines <https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.md>`_.
+
 
 
 
