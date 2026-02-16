@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=9cd68406"></script>
+    <script src="../../_static/documentation_options.js?v=e7cfaa17"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/wmoutils/gbon';</script>
@@ -475,6 +475,7 @@
 <span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_influence_radius</span><span class="p">(</span><span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">over</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;land&#39;</span><span class="p">,</span>
                          <span class="n">high_density</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="c1"># pylint: disable=line-too-long</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Returns the so-called radius of influence of a GBON station given its type.</span>
 
 <span class="sd">    The radius of influence is computed as R = (GBON horizontal resolution)/2 x sqrt(2), and</span>
@@ -523,7 +524,7 @@
 <span class="sd">        which represent the longest distance between any geographical point and its closest GBON</span>
 <span class="sd">        station.</span>
 
-<span class="sd">        .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf</span>
+<span class="sd">        .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -568,7 +569,7 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-4ec4d3b</div>
+wmoutils, version: dev-e6eeff0</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 2026-02-16.

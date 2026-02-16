@@ -106,6 +106,6 @@ Module Contents
    which represent the longest distance between any geographical point and its closest GBON
    station.
 
-   .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf
+   .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf.
 
 
