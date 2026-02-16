@@ -25,7 +25,7 @@ The wmoutils package provides some WMO-related Python utility modules, including
 * ``wmoutils.query``:
     to extract relevant information from `WDQMS <https://wdqms.wmo.int/>`__ and `OSCAR Surface <https://oscar.wmo.int/surface/#/>`__.
 * ``wmoutils.gbon``:
-    to extract relevant `GBON <https://wmo.int/activities/global-basic-observing-network-gbon>`__` values.
+    to extract relevant `GBON <https://wmo.int/activities/global-basic-observing-network-gbon>`__ parameters.
 
 
 For instructions on how to install and use the wmoutils package, please refer to the full
