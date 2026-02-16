@@ -10,7 +10,6 @@ Module contains: GBON-related functions
 
 # Import from Python
 import logging
-from typing import Optional
 
 # Import from this module
 from .logger import log_func_call
@@ -21,15 +20,15 @@ logger = logging.getLogger(__name__)
 
 
 @log_func_call(logger)
-def get_resolution(station_type: str, over: Optional[str] = 'land',
-                   high_density: Optional[bool] = False) -> int:
-    """ Return the GBON horizontal resolution for a given station type.
+def get_resolution(station_type: str, over: str = 'land',
+                   high_density: bool = False) -> int:
+    """ Returns the GBON horizontal resolution for a given station type.
 
     Args:
-        station_type (str): one of ['surface', 'upper-air'].
-        over (str, optional): one of ['land', 'sea']. Defaults to 'land'.
-        high_density (bool, optional): if True, will return the GBON high density value.
-            Defaults to False.
+        station_type (str): one of ``['surface', 'upper-air']``.
+        over (str, optional): one of ``['land', 'sea']``. Defaults to ``'land'``.
+        high_density (bool, optional): if ``True``, will return the GBON high density value.
+            Defaults to ``False``.
 
     Returns:
         int: the GBON horizontal resolution in km
@@ -69,22 +68,57 @@ def resolution_to_influence_radius(res: float) -> float:
 
 
 @log_func_call(logger)
-def get_influence_radius(station_type: str, over: Optional[str] = 'land',
-                         high_density: Optional[bool] = False) -> float:
-    """ Return the theoretical influence radius of a GBON station given its type.
+def get_influence_radius(station_type: str, over: str = 'land',
+                         high_density: bool = False) -> float:
+    """ Returns the so-called radius of influence of a GBON station given its type.
+
+    The radius of influence is computed as R = (GBON horizontal resolution)/2 x sqrt(2), and
+    represent the radius of the circle that ought to be drawn around each GBON stations when
+    assembling network maps.
 
     Args:
-        station_type (str): one of ['surface', 'upper-air'].
-        over (str, optional): one of ['land', 'sea']. Defaults to 'land'.
-        high_density (bool, optional): if True, will return the GBON high density value.
-            Defaults to False.
+        station_type (str): one of ``['surface', 'upper-air']``.
+        over (str, optional): one of ``['land', 'sea']``. Defaults to ``'land'``.
+        high_density (bool, optional): if ``True``, will return the GBON high density value.
+            Defaults to ``False``.
 
     Returns:
-        float: the influence radius in km.
+        float: the radius of influence in km.
 
-    The influence radius is computed as R = (GBON horizontal resolution)/2 * sqrt(2).
-    This derives from the fact that with a uniform distribution of GBON stations in a regular grid,
-    the most distant point will be located R km away.
+    Example:
+        To get the the GBON radius of influence for a surface station over land,
+        with standard desnity::
+
+            from wmoutils.gbon import get_influence_radius
+
+            radius_in_km = get_influence_radius(station_type='surface', over='land',
+                                                high_density=False)
+
+    Notes:
+
+        The concept of radius of influence for GBON stations was first introduced in
+        Appendix A of the SOFF National Contribution Plan for the Democratic Republic of Congo,
+        `Vogt et al. (2024)`_. What follows is a summary of the relevant section of this document,
+        to which we refer the interested reader for more details.
+
+        The radius of influence R_inf of a GBON station corresponds to the maximum horizontal
+        distance between the station and any geographical location situated closer to this station
+        than any other GBON station.
+
+        When performing a so-called *baseline GBON gap analysis*, WMO adopts the premise that GBON
+        stations are being distributed on a regular, orthogonal, two-dimensional grid, with a
+        horizontal/vertical distance between stations equal to the relevant GBON horizontal
+        resolution.
+
+        Under this specific premise, all stations thus have the same baseline radius of influence
+        of:
+
+        R_inf = sqrt(2)/2 x (GBON horizontal resolution)
+
+        which represent the longest distance between any geographical point and its closest GBON
+        station.
+
+        .. _Vogt et al. (2024): https://www.un-soff.org/wp-content/uploads/2025/02/Democratic-Republic-of-Congo-GBON-National-Gap-Analysis.pdf
 
     """
 

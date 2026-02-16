@@ -1,6 +1,12 @@
 import os
 
-extensions = ["sphinx.ext.napoleon", "autoapi.extension", "sphinx.ext.viewcode", "sphinx.ext.todo"]
+#import sys
+#from pathlib import Path
+
+#sys.path.insert(0, str(Path('..', 'src').resolve()))
+
+extensions = ["sphinx.ext.napoleon", "autoapi.extension", "sphinx.ext.viewcode",
+              "sphinx.ext.todo"]
 
 project = "wmoutils"
 copyright = "2026, MeteoSwiss"
@@ -14,6 +20,10 @@ exclude_patterns = ["_build"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
+
+# Deal with the todos
+todo_include_todos = True
+todo_link_only = False
 
 # html template settings
 html_title = project
@@ -46,7 +56,8 @@ html_theme_options = {
 
 # Disable left side navigation of specific pages, since they are empty
 # (BUG in theme: https://github.com/pydata/pydata-sphinx-theme/issues/1662)
-html_sidebars = {"usage": [], "changelog": [], "migration_guide": [], "readme": []}
+html_sidebars = {"usage": [], "query": [], "gbon": [], "changelog": [],
+                 "migration_guide": [], "readme": []}
 
 napoleon_use_param = False  # improve parameters description
 add_module_names = False  # avoid the display of redundant module names

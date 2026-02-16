@@ -47,7 +47,7 @@ Feature suggestions are welcome! Please create an issue using our *feature reque
 
 ### Prerequisites
 
-- Python 3.11 or higher (up to 3.12)
+- Python 3.14
 - Poetry (for dependency management)
 - Git
 
@@ -56,7 +56,7 @@ Feature suggestions are welcome! Please create an issue using our *feature reque
 1. Clone your fork of the repository:
 
    ```console
-   $ git clone https://github.com/YOUR-USERNAME/wmoutils.git
+   $ git clone https://github.com/MeteoSwiss/wmoutils.git
    $ cd wmoutils
    ```
 
@@ -91,7 +91,7 @@ $ poetry run yapf -r -i wmoutils
 Run pylint to check for code quality issues:
 
 ```console
-$ poetry run pylint wmoutils
+$ poetry run pylint src
 ```
 
 The project configuration is in `pyproject.toml`. We disable certain docstring requirements but maintain other quality standards.
@@ -101,7 +101,7 @@ The project configuration is in `pyproject.toml`. We disable certain docstring r
 We enforce type hints throughout the codebase:
 
 ```console
-$ poetry run mypy wmoutils
+$ poetry run mypy src
 ```
 
 All function definitions must include type annotations.
@@ -127,7 +127,7 @@ $ poetry run pytest
 Run tests with coverage:
 
 ```console
-$ poetry run pytest --cov=wmoutils --cov-report=html
+$ poetry run pytest --cov=src --cov-report=html
 ```
 
 ## Documentation
