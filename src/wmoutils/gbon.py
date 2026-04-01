@@ -20,14 +20,14 @@ logger = logging.getLogger(__name__)
 
 
 @log_func_call(logger)
-def get_resolution(station_type: str, over: str =  'land',
+def get_resolution(station_type: str, over: str = 'land',
                    high_density: bool = False) -> int:
     """ Returns the GBON horizontal resolution for a given station type.
 
     Args:
         station_type (str): one of ``['surface', 'upper-air']``.
         over (str, optional): one of ``['land', 'sea']``. Defaults to ``'land'``.
-        high_density (bool, optional): if ``True``, will return the GBON high density value.
+        high_density (bool, optional): if ``True``, will return the GBON high density value.                            /
             Defaults to ``False``.
 
     Returns:
