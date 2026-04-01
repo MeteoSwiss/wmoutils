@@ -83,7 +83,7 @@ We use [YAPF](https://github.com/google/yapf) for code formatting with PEP 8 sty
 Format your code before committing:
 
 ```console
-$ poetry run yapf -r -i wmoutils
+$ poetry run yapf -r -i src
 ```
 
 ### Linting with Pylint
