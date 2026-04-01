@@ -77,7 +77,7 @@ def build_base_wdqms_request(module: str, station_type: str, interval: str, cate
     if module == 'gbon' and category != 'availability':
         raise WmoutilsError("GBON only has availability assessments, cannot build request.")
 
-    return f'https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/{key}/{interval}/{category}/?'
+    return f'https://wdqms.wmo.int/wdqmsapi/v1/download/{module}/{key}/{interval}/{category}/?'
 
 
 @log_func_call(logger)
@@ -156,7 +156,9 @@ def query_wdqms(  # pylint: disable=too-many-arguments, too-many-positional-argu
 
     # Issue an error if the request was not successful.
     if req.status_code != 200:
-        raise WmoutilsError(f"WDQMS API request failed with status code {req.status_code}" +
+        # Extract the request URL ... following https://stackoverflow.com/questions/30687683
+        url = (req.history + [req])[0].url
+        raise WmoutilsError(f"WDQMS API request {url} failed with status code {req.status_code}" +
                             f" and message: {req.text}")
 
     # Convert the text of the reply to a polars.DataFrame, and return it.

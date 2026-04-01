@@ -33,6 +33,11 @@ def test_build_base_wdqms_request():
     except WmoutilsError as e:
         assert str(e) == "Unknown 'station_type': invalid"
 
+    # Test for the NWP option
+    request = build_base_wdqms_request(module='nwp', station_type='surface', interval='monthly',
+                                       category='quality')
+    assert request == 'https://wdqms.wmo.int/wdqmsapi/v1/download/nwp/synop/monthly/quality/?'
+
 
 def test_query_wdqms():
     """ Test the query_wdqms function living in query.py """
