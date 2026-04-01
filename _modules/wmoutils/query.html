@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=4ced226a"></script>
+    <script src="../../_static/documentation_options.js?v=062f6bc6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/wmoutils/query';</script>
@@ -476,7 +476,7 @@
     <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">category</span> <span class="o">!=</span> <span class="s1">&#39;availability&#39;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;GBON only has availability assessments, cannot build request.&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;https://wdqms.wmo.int/wdqmsapi/v1/download/gbon/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s1">/?&#39;</span></div>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;https://wdqms.wmo.int/wdqmsapi/v1/download/</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s1">/?&#39;</span></div>
 
 
 
@@ -558,7 +558,9 @@
 
     <span class="c1"># Issue an error if the request was not successful.</span>
     <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WDQMS API request failed with status code </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span>
+        <span class="c1"># Extract the request URL ... following https://stackoverflow.com/questions/30687683</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="p">[</span><span class="n">req</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">url</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WDQMS API request </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2"> failed with status code </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span>
                             <span class="sa">f</span><span class="s2">&quot; and message: </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># Convert the text of the reply to a polars.DataFrame, and return it.</span>
@@ -686,7 +688,7 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-5dfb065</div>
+wmoutils, version: dev-e64cb55</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 2026-04-01.
