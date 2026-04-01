@@ -1,7 +1,7 @@
 [project]
 name = "wmoutils"
 version = "0.0.0"  # DO NOT SET. The version of the package is always set by the CI/CD pipeline.
-description = "Collection of utilities to interact with WMO APIs"
+description = "Collection of Python utility functions to interact with WMO APIs, incl. OSCAR and WDQMS."
 license = "BSD-3-Clause"
 authors = [
     {name = "F.P.A Vogt", email = "frederic.vogt@meteoswiss.ch"},
