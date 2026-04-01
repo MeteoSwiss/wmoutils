@@ -10,6 +10,13 @@ SPDX-License-Identifier: BSD-3-Clause
 import logging
 from importlib.metadata import version as getversion
 
+# Import from this package
+from . import gbon
+from . import query
+
+# Make sure users can do things like import wmoutils -> wmoutils.query.etc ...
+__all__ = ['query', 'gbon']
+
 # Extract the version from the system, because it is set (upon release) by the CI/CD pipeline
 # via the pyproject.toml file (using poetry).
 __version__ = getversion("wmoutils")
