@@ -29,7 +29,7 @@ The wmoutils package provides some WMO-related Python utility modules, including
 
 
 For instructions on how to install and use the wmoutils package, please refer to the full
-`documentation <https://meteo-swiss.github.io/wmoutils/>`_.
+`documentation <https://meteoswiss.github.io/wmoutils/>`_.
 
 Unexpected behavior and problems arising while using wmoutils can be reported and tracked using
 `GitHub issues <https://github.com/MeteoSwiss/wmoutils/issues>`_.
