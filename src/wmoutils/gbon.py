@@ -27,7 +27,7 @@ def get_resolution(station_type: str, over: str = 'land',
     Args:
         station_type (str): one of ``['surface', 'upper-air']``.
         over (str, optional): one of ``['land', 'sea']``. Defaults to ``'land'``.
-        high_density (bool, optional): if ``True``, will return the GBON high density value.                            /
+        high_density (bool, optional): if ``True``, will return the GBON high density value.
             Defaults to ``False``.
 
     Returns:
