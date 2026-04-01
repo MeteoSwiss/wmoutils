@@ -44,7 +44,7 @@ Module Contents
 
    :Parameters: * **station_type** (*str*) -- one of ``['surface', 'upper-air']``.
                 * **over** (*str, optional*) -- one of ``['land', 'sea']``. Defaults to ``'land'``.
-                * **high_density** (*bool, optional*) -- if ``True``, will return the GBON high density value.
+                * **high_density** (*bool, optional*) -- if ``True``, will return the GBON high density value.                            /
                   Defaults to ``False``.
 
    :returns: the GBON horizontal resolution in km
