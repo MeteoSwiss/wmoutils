@@ -88,7 +88,7 @@ def get_influence_radius(station_type: str, over: str = 'land',
 
     Example:
         To get the the GBON radius of influence for a surface station over land,
-        with standard desnity::
+        with standard density::
 
             from wmoutils.gbon import get_influence_radius
 
@@ -99,8 +99,8 @@ def get_influence_radius(station_type: str, over: str = 'land',
 
         The concept of radius of influence for GBON stations was first introduced in
         Appendix A of the SOFF National Contribution Plan for the Democratic Republic of Congo,
-        `Vogt et al. (2024)`_. What follows is a summary of the relevant section of this document,
-        to which we refer the interested reader for more details.
+        see `Vogt et al. (2024)`_. What follows is a summary of the relevant section of this
+        document, to which we refer the interested reader for more details.
 
         The radius of influence R_inf of a GBON station corresponds to the maximum horizontal
         distance between the station and any geographical location situated closer to this station
