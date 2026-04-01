@@ -25,16 +25,3 @@ Submodules
    /autoapi/wmoutils/query/index
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   wmoutils.logger
-
-
-Package Contents
-----------------
-
-.. py:data:: logger
-
