@@ -87,6 +87,11 @@ def query_wdqms(  # pylint: disable=too-many-arguments, too-many-positional-argu
                 baseline: str = 'OSCAR') -> pl.DataFrame:
     """ Utility function to query WDQMS via its API, and format the reply as a polars.DataFrame.
 
+    Warning:
+        This function currently does not allow to query all possible combinations of parameters
+        supported by the WDQMS API. While coverage might grow overtime, it may never cover all
+        options.
+
     Args:
         module (str): one of ``['gbon', 'nwp']``.
         station_type (str): one of ``['surface', 'upper-air', 'marine']``.

@@ -3,8 +3,7 @@
 Thank you for your interest in contributing to **wmoutils**! We welcome contributions from the community and are grateful for your support.
 
 ## Project Purpose
-This library is developed primarily to support the operational, scientific, and research needs of MeteoSwiss.
-While the project is open source and welcomes external contributions, it is intended to be released, maintained, and distributed under the MeteoSwiss name. Contributions should align with this mission and the long‑term goals of the organization.
+This library is developed primarily to support the operational, scientific, and research needs of MeteoSwiss. While the project is open source and welcomes external contributions, it is intended to be released, maintained, and distributed under the MeteoSwiss name. Contributions should align with this mission and the long‑term goals of the organization.
 
 ## Code of Conduct
 
@@ -14,25 +13,11 @@ This project adheres to the Contributor Covenant Code of Conduct. By participati
 
 ### Reporting Bugs
 
-Before creating bug reports, please check existing issues to avoid duplicates. When you create a bug report, include as many details as possible:
-
-- Use a clear and descriptive title
-- Describe the exact steps to reproduce the problem
-- Provide specific examples to demonstrate the steps
-- Describe the behavior you observed and what you expected to see
-- Include any error messages or stack traces
-- Note your environment (Python version, OS, etc.)
-
-You can report bugs using our **bug report template**.
+Bug reports should be submitted as [Github Issues](https://github.com/MeteoSwiss/wmoutils/issues). Before submitting a new issue, please check existing issues to avoid duplicates. Please include as many details as possible.
 
 ### Suggesting Features
 
-Feature suggestions are welcome! Please create an issue using our *feature request template* and include:
-
-- A clear and descriptive title
-- A detailed description of the proposed feature
-- Explain why this feature would be useful
-- Provide examples of how it would be used
+Feature suggestions are welcome. Please do so using our [feature request template](https://github.com/MeteoSwiss/wmoutils/issues) to do so.
 
 ### Contributing Code
 
@@ -48,7 +33,6 @@ Feature suggestions are welcome! Please create an issue using our *feature reque
 ### Prerequisites
 
 - Python 3.14
-- Poetry (for dependency management)
 - Git
 
 ### Setting Up Your Environment
@@ -60,38 +44,28 @@ Feature suggestions are welcome! Please create an issue using our *feature reque
    $ cd wmoutils
    ```
 
-2. Install dependencies:
+2. Install the package locally:
 
    ```console
-   $ poetry install
+   $ pip install -e .
    ```
 
 3. Verify your setup by running the tests:
 
    ```console
-   $ poetry run pytest
+   $ pytest
    ```
 
 ## Code Style and Quality
 
 This project uses several tools to maintain code quality:
 
-### Formatting with YAPF
-
-We use [YAPF](https://github.com/google/yapf) for code formatting with PEP 8 style and a 120-character line limit.
-
-Format your code before committing:
-
-```console
-$ poetry run yapf -r -i src
-```
-
 ### Linting with Pylint
 
 Run pylint to check for code quality issues:
 
 ```console
-$ poetry run pylint src
+$ pylint src
 ```
 
 The project configuration is in `pyproject.toml`. We disable certain docstring requirements but maintain other quality standards.
@@ -101,7 +75,7 @@ The project configuration is in `pyproject.toml`. We disable certain docstring r
 We enforce type hints throughout the codebase:
 
 ```console
-$ poetry run mypy src
+$ mypy src
 ```
 
 All function definitions must include type annotations.
@@ -121,42 +95,37 @@ All function definitions must include type annotations.
 Run all tests:
 
 ```console
-$ poetry run pytest
+$ pytest
 ```
 
 Run tests with coverage:
 
 ```console
-$ poetry run pytest --cov=src --cov-report=html
+$ pytest --cov=src
 ```
 
 ## Documentation
 
-- Update documentation for any changed functionality
 - Add docstrings to new functions, classes, and modules
+- Update documentation for any changed functionality
 - Follow the existing documentation style
 - Build documentation locally to verify changes:
 
-  ```console
-  $ poetry run sphinx-build doc doc/_build
-  ```
+```console
+$ sphinx-build doc doc/_build
+```
 
 ## Pull Request Process
 
-1. **Update the CHANGELOG**: Add a brief description of your changes in **CHANGELOG**
+1. **Update the CHANGELOG**: Add a brief description of your changes in **CHANGELOG.rst**.
 
-2. **Update AUTHORS**: If this is your first contribution, add your name to the **AUTHORS** file
+2. **Update AUTHORS**: If this is your first contribution, add your name to the **AUTHORS** file.
 
-3. **Create a Pull Request**: Use our **pull request template** and ensure you:
+3. **Create a Pull Request**: Use our **pull request template**.
 
-   - Provide a clear description of the changes
-   - Reference any related issues (e.g., "Closes #123")
-   - Complete the checklist in the PR template
-   - Ensure all CI checks pass
+4. **Code Review**: A maintainer will review your PR. Be prepared to make changes based on feedback.
 
-4. **Code Review**: A maintainer will review your PR. Be prepared to make changes based on feedback
-
-5. **Merge**: Once approved and all checks pass, a maintainer will merge your PR
+5. **Merge**: Once approved and all checks pass, a maintainer will merge your PR.
 
 ### Commit Messages
 
@@ -166,16 +135,6 @@ Write clear, concise commit messages:
 - Start with a capital letter
 - Keep the first line under 50 characters
 - Add a blank line followed by a detailed description if needed
-
-Example:
-
-```text
-Add validation for input parameters
-
-- Validate that input is not None
-- Raise ValueError for invalid types
-- Add unit tests for validation logic
-```
 
 ## License
 
@@ -190,3 +149,15 @@ If you have questions about contributing, please:
 - Create a new issue with your question
 
 Thank you for contributing to wmoutils!
+
+## Release mechanism
+
+The project follows the MeteoSwiss **GitOps concept**: releases are triggered whenever a Git TAG is created.
+
+The TAG must follow the `semantic version <https://semver.org/>`__ format and `PEP 440 <https://peps.python.org/pep-0440/>`__ , otherwise the release task will fail.
+
+Steps to follow for a new release:
+
+* Adapt CHANGELOG.rst with release information
+* Adapt ``doc/_static/switcher_config.json`` adding the new documentation URL for the release
+* Create a new Release in the Github project
