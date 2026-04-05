@@ -13,6 +13,9 @@
 .. image:: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test.yaml/badge.svg
     :target: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test.yaml
 
+.. image:: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test_weekly.yaml/badge.svg
+    :target: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test_weekly.yaml
+
 .. image:: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_publish_dev_documentation.yaml/badge.svg
     :target: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_publish_dev_documentation.yaml
 
