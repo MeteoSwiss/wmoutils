@@ -6,6 +6,7 @@ Distributed under the terms of the BSD 3-Clause License.
 SPDX-License-Identifier: BSD-3-Clause
 """
 
+import pytest
 import polars as pl
 
 from wmoutils.errors import WmoutilsError
@@ -71,3 +72,7 @@ def test_query_oscar_surface():
     out = query_oscar_surface(territoryName='ARG', facilityType='LandFixed')
     assert 'wigosId' in out.columns
     assert out['wigosId'].null_count() > 0  # pylint: disable=unsubscriptable-object
+
+    # Make sure I get a proper error if the extra parms are not a list of string
+    with pytest.raises(WmoutilsError):
+        query_oscar_surface(wigosId='0-20000-0-06610', extra_prms=[7])
