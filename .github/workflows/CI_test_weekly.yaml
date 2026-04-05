@@ -12,7 +12,7 @@ name: CI_test_weekly
 on:
   workflow_dispatch:  # Allow to trigger the weekly tests manually
   schedule:
-    - cron: '43 21 * * 7'  # Run at 21:43 UTC every Sunday
+    - cron: '43 21 * * 0'  # Run at 21:43 UTC every Sunday
 
 jobs:
   pipeline:
