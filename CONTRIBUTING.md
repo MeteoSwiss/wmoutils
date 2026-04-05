@@ -68,7 +68,7 @@ Run pylint to check for code quality issues:
 $ pylint src
 ```
 
-The project configuration is in [pyproject.toml]. We disable certain docstring requirements but maintain other quality standards.
+The project configuration is in ``pyproject.toml``. We disable certain docstring requirements but maintain other quality standards.
 
 ### Type Checking with Mypy
 
@@ -117,11 +117,11 @@ $ sphinx-build doc doc/_build
 
 ## Pull Request Process
 
-1. **Update the CHANGELOG**: Add a brief description of your changes in **CHANGELOG.rst**.
+1. **Update the CHANGELOG**: Add a brief description of your changes in ``CHANGELOG.rst``.
 
-2. **Update AUTHORS**: If this is your first contribution, add your name to the **AUTHORS** file.
+2. **Update AUTHORS**: If this is your first contribution, add your name to the ``AUTHORS`` file.
 
-3. **Create a Pull Request**: Use our **pull request template**.
+3. **Create a Pull Request**: Use our ``pull request template``.
 
 4. **Code Review**: A maintainer will review your PR. Be prepared to make changes based on feedback.
 
@@ -152,7 +152,7 @@ Thank you for contributing to wmoutils!
 
 ## Release mechanism
 
-The project follows the MeteoSwiss **GitOps concept**: releases are triggered whenever a Git TAG is created.
+The project follows the MeteoSwiss GitOps concept: releases are triggered whenever a Git TAG is created.
 
 The TAG must follow the [semantic version](https://semver.org/) format and [PEP 440](https://peps.python.org/pep-0440/), otherwise the release task will fail.
 

@@ -22,7 +22,7 @@ jobs:
     # Checkout the main branch if this is a scheduled test
     # The idea for this Action is to spot issues with new dependency versions as soon as they
     # are released.
-    - name: Checkout current repository (master branch) ?
+    - name: Checkout current repository (main branch)
       if: ${{ github.event_name == 'schedule' }}
       uses: actions/checkout@v4
       with:
@@ -30,7 +30,7 @@ jobs:
         ref: main
 
     # Alternatively, checkout whichever branch was selected by the user upon the manual trigger.
-    - name: Checkout current repository (custom branch) ?
+    - name: Checkout current repository (custom branch)
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: actions/checkout@v4
       with:
