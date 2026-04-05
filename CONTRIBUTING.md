@@ -68,7 +68,7 @@ Run pylint to check for code quality issues:
 $ pylint src
 ```
 
-The project configuration is in `pyproject.toml`. We disable certain docstring requirements but maintain other quality standards.
+The project configuration is in [pyproject.toml]. We disable certain docstring requirements but maintain other quality standards.
 
 ### Type Checking with Mypy
 
@@ -154,7 +154,7 @@ Thank you for contributing to wmoutils!
 
 The project follows the MeteoSwiss **GitOps concept**: releases are triggered whenever a Git TAG is created.
 
-The TAG must follow the `semantic version <https://semver.org/>`__ format and `PEP 440 <https://peps.python.org/pep-0440/>`__ , otherwise the release task will fail.
+The TAG must follow the [semantic version](https://semver.org/) format and [PEP 440](https://peps.python.org/pep-0440/), otherwise the release task will fail.
 
 Steps to follow for a new release:
 
