@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="_static/documentation_options.js?v=d5827277"></script>
+    <script src="_static/documentation_options.js?v=b6d70373"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
@@ -57,7 +57,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="dev" />
-    <meta name="docbuild:last-update" content="2026-04-05"/>
+    <meta name="docbuild:last-update" content="2026-04-07"/>
   
     
     <script src="_static/searchtools.js"></script>
@@ -376,12 +376,12 @@
                   
   <section id="wmoutils">
 <h1>wmoutils<a class="headerlink" href="#wmoutils" title="Link to this heading">#</a></h1>
-<p>Welcome to the documentation of wmoutils: a simple and unassuming collection of utility functions
+<p>Welcome to the documentation of <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>: a simple and unassuming collection of utility functions
 to query and extract WMO-related information from various sources, such as <a class="reference external" href="https://wdqms.wmo.int/">WDQMS</a> and
 <a class="reference external" href="https://oscar.wmo.int/surface/#/">OSCAR/Surface</a>.</p>
-<p>With wmoutils, you can:</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, you can:</p>
 <ul>
-<li><p>query OSCAR/Surface:</p>
+<li><p>query <a class="reference external" href="https://oscar.wmo.int/surface/#/">OSCAR/Surface</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_oscar_surface</span>
 
 <span class="c1"># Query a single station using its wigos ID</span>
@@ -392,7 +392,7 @@ to query and extract WMO-related information from various sources, such as <a cl
 </pre></div>
 </div>
 </li>
-<li><p>query WDQMS:</p>
+<li><p>query <a class="reference external" href="https://wdqms.wmo.int/">WDQMS</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_wdqms</span>
 
 <span class="c1"># Query the availability of temperature observations for all GBON surface stations in 2026-01</span>
@@ -401,7 +401,7 @@ to query and extract WMO-related information from various sources, such as <a cl
 </pre></div>
 </div>
 </li>
-<li><p>derive the so-called <em>radius of influence</em> for GBON stations:</p>
+<li><p>derive the so-called “radius of influence” for GBON stations:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.gbon</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_influence_radius</span>
 
 <span class="c1"># Compute the radius of influence for all GBON surface stations in Switzerland</span>
@@ -411,10 +411,12 @@ to query and extract WMO-related information from various sources, such as <a cl
 </li>
 </ul>
 <p>You can refer to the pages linked below for more details on these different functionalities.</p>
-<p>If you face unexpected trouble while using wmoutils, please report the issue on the
-<a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/issues">GitHub repository</a>.</p>
-<p>If you wish to contribute to the development of wmoutils, please refer to the
-<a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.md">contributing guidelines</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">wmoutils</span></code> is being developed at MeteoSwiss on Github. If you encounter trouble while
+using <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, please report the issue on the <a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/issues">GitHub repository</a>. If you wish to
+contribute to the development of <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, please refer to the <a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.md">contributing guidelines</a>.</p>
+</div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Table of contents</span></p>
 <ul class="current">
@@ -488,10 +490,10 @@ to query and extract WMO-related information from various sources, such as <a cl
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-e557647</div>
+wmoutils, version: dev-5e60744</div>
       
         <div class="footer-item"><p class="last-updated">
-  Last updated on 2026-04-05.
+  Last updated on 2026-04-07.
   <br/>
 </p></div>
       

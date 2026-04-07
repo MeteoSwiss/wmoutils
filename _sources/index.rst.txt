@@ -1,16 +1,13 @@
 wmoutils
 ========
 
-Welcome to the documentation of wmoutils: a simple and unassuming collection of utility functions
+Welcome to the documentation of ``wmoutils``: a simple and unassuming collection of utility functions
 to query and extract WMO-related information from various sources, such as `WDQMS`_ and
 `OSCAR/Surface`_.
 
-.. _WDQMS: https://wdqms.wmo.int/
-.. _OSCAR/Surface: https://oscar.wmo.int/surface/#/
+With ``wmoutils``, you can:
 
-With wmoutils, you can:
-
-- query OSCAR/Surface::
+- query `OSCAR/Surface`_::
 
    from wmoutils.query import query_oscar_surface
 
@@ -20,7 +17,7 @@ With wmoutils, you can:
    # Query all fixed surface stations in Switzerland
    many_sites = query_oscar_surface(territoryName='CHE',facilityType='LandFixed')
 
-- query WDQMS::
+- query `WDQMS`_::
 
    from wmoutils.query import query_wdqms
 
@@ -28,7 +25,7 @@ With wmoutils, you can:
    availability = query_wdqms(module='gbon', station_type='surface', var_name='temperature',
                               interval='monthly', category='availability', date='2026-01')
 
-- derive the so-called *radius of influence* for GBON stations::
+- derive the so-called "radius of influence" for GBON stations::
 
    from wmoutils.gbon import get_influence_radius
 
@@ -37,12 +34,15 @@ With wmoutils, you can:
 
 You can refer to the pages linked below for more details on these different functionalities.
 
-If you face unexpected trouble while using wmoutils, please report the issue on the
-`GitHub repository`_.
 
-If you wish to contribute to the development of wmoutils, please refer to the
-`contributing guidelines`_.
+.. note::
+   ``wmoutils`` is being developed at MeteoSwiss on Github. If you encounter trouble while
+   using ``wmoutils``, please report the issue on the `GitHub repository`_. If you wish to
+   contribute to the development of ``wmoutils``, please refer to the `contributing guidelines`_.
 
+
+.. _WDQMS: https://wdqms.wmo.int/
+.. _OSCAR/Surface: https://oscar.wmo.int/surface/#/
 .. _GitHub repository: https://github.com/MeteoSwiss/wmoutils/issues
 .. _contributing guidelines: https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.md
 
