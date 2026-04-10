@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>wmoutils &#8212; wmoutils</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+    <script src="_static/documentation_options.js?v=fcb6cd92"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'v0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The query module" href="query.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="v0.1.0" />
+    <meta name="docbuild:last-update" content="2026-04-10"/>
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-light" alt=""/>
+    <img src="_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">wmoutils</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="#">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="gbon.html">
+    The gbon module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="#">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="gbon.html">
+    The gbon module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="wmoutils">
+<h1>wmoutils<a class="headerlink" href="#wmoutils" title="Link to this heading">#</a></h1>
+<p>Welcome to the documentation of <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>: a simple and unassuming collection of utility functions
+to query and extract WMO-related information from various sources, such as <a class="reference external" href="https://wdqms.wmo.int/">WDQMS</a> and
+<a class="reference external" href="https://oscar.wmo.int/surface/#/">OSCAR/Surface</a>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, you can:</p>
+<ul>
+<li><p>query <a class="reference external" href="https://oscar.wmo.int/surface/#/">OSCAR/Surface</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_oscar_surface</span>
+
+<span class="c1"># Query a single station using its wigos ID</span>
+<span class="n">one_site</span> <span class="o">=</span> <span class="n">query_oscar_surface</span><span class="p">(</span><span class="n">wigosId</span><span class="o">=</span><span class="s1">&#39;0-20000-0-06610&#39;</span><span class="p">)</span>
+
+<span class="c1"># Query all fixed surface stations in Switzerland</span>
+<span class="n">many_sites</span> <span class="o">=</span> <span class="n">query_oscar_surface</span><span class="p">(</span><span class="n">territoryName</span><span class="o">=</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span><span class="n">facilityType</span><span class="o">=</span><span class="s1">&#39;LandFixed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>query <a class="reference external" href="https://wdqms.wmo.int/">WDQMS</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_wdqms</span>
+
+<span class="c1"># Query the availability of temperature observations for all GBON surface stations in 2026-01</span>
+<span class="n">availability</span> <span class="o">=</span> <span class="n">query_wdqms</span><span class="p">(</span><span class="n">module</span><span class="o">=</span><span class="s1">&#39;gbon&#39;</span><span class="p">,</span> <span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+                           <span class="n">interval</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;availability&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026-01&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>derive the so-called “radius of influence” for GBON stations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.gbon</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_influence_radius</span>
+
+<span class="c1"># Compute the radius of influence for all GBON surface stations in Switzerland</span>
+<span class="n">roi_km</span> <span class="o">=</span> <span class="n">get_influence_radius</span><span class="p">(</span><span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">over</span><span class="o">=</span><span class="s1">&#39;land&#39;</span><span class="p">,</span> <span class="n">high_density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>You can refer to the pages linked below for more details on these different functionalities.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">wmoutils</span></code> is being developed at MeteoSwiss on Github. If you encounter trouble while
+using <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, please report the issue on the <a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/issues">GitHub repository</a>. If you wish to
+contribute to the development of <code class="docutils literal notranslate"><span class="pre">wmoutils</span></code>, please refer to the <a class="reference external" href="https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.md">contributing guidelines</a>.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Table of contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query.html">The <code class="docutils literal notranslate"><span class="pre">query</span></code> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="query.html#querying-oscar-surface">Querying OSCAR/Surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html#querying-wdqms">Querying WDQMS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gbon.html">The <code class="docutils literal notranslate"><span class="pre">gbon</span></code> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gbon.html#gbon-resolution">GBON resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gbon.html#gbon-radius-of-influence">GBON radius of influence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#dev">[dev]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-1-0">v0.1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/wmoutils/index.html">wmoutils</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="query.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The <code class="docutils literal notranslate"><span class="pre">query</span></code> module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><!-- This will display the version of the docs -->
+wmoutils, version: v0.1.0-5e60744</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on 2026-04-10.
+  <br/>
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, MeteoSwiss.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
