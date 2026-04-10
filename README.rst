@@ -7,9 +7,6 @@
 .. image:: https://img.shields.io/pypi/l/wmoutils.svg
     :target: https://pypi.org/project/wmoutils/
 
-.. image:: https://github.com/MeteoSwiss/wmoutils/actions/workflows/github-code-scanning/codeql/badge.svg
-    :target: https://github.com/MeteoSwiss/wmoutils/actions/workflows/github-code-scanning/codeql
-
 .. image:: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test.yaml/badge.svg
     :target: https://github.com/MeteoSwiss/wmoutils/actions/workflows/CI_test.yaml
 
