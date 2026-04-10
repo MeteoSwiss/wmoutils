@@ -105,7 +105,7 @@ Module Contents
       - Add support for GCOS and Transition Monitoring.
 
 
-.. py:function:: query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -> polars.DataFrame
+.. py:function:: query_oscar_surface(extract_prms: list | None = None, **search_prms: str) -> polars.DataFrame
 
    Utility function to query OSCAR/Surface and extract relevant station information and return
    them as a polars DataFrame.
@@ -125,16 +125,16 @@ Module Contents
       See the `OSCAR/Surface API Reference <https://oscar.wmo.int/surface/#/faq/>`_ for the full
       range of supported keyword arguments.
 
-   :Parameters: * **extra_prms** (*list, optional*) -- list of additional parameters to extract from the API reply, in
-                  addition to ``['wigosId', 'name', 'longitude', 'latitude']``.
-                * **\*\*search_params** -- search keyword-arguments-and-value-pairs, to be fed directly to the
+   :Parameters: * **extract_prms** (*list, optional*) -- list of additional parameters to extract from the API reply,
+                * **in addition to ``['wigosId', 'name', 'longitude', 'latitude']``.**
+                * **\*\*search_prms** -- search keyword-arguments-and-value-pairs, to be fed directly to the
                   ``params`` keyword of the API ``requests.get()`` function.
 
    :returns: DataFrame containing the API response data.
    :rtype: pl.DataFrame
 
-   :raises WmoutilsError: if the API request fails, or if the ``extra_prms`` argument is not a list of
-       strings.
+   :raises WmoutilsError: if the API request fails, or if the ``extract_prms`` argument is
+       not a list of strings.
 
    .. rubric:: Examples
 
@@ -146,6 +146,6 @@ Module Contents
 
    To query all fixed surface stations in Switzerland::
 
-       out = query_oscar_surface(territoryName='CHE',facilityType='LandFixed')
+       out = query_oscar_surface(territoryName='CHE', facilityType='LandFixed')
 
 

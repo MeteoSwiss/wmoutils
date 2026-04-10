@@ -4,7 +4,8 @@ The ``gbon`` module
 GBON resolution
 ----------------
 
-This module encodes the applicable GBON resolutions for different station types within the function:
+This ``gbon`` module encodes the applicable GBON horizontal resolutions for different station types
+within the function:
 
 .. autofunction:: wmoutils.gbon.get_resolution
    :noindex:

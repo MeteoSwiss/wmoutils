@@ -34,7 +34,6 @@ With ``wmoutils``, you can:
 
 You can refer to the pages linked below for more details on these different functionalities.
 
-
 .. note::
    ``wmoutils`` is being developed at MeteoSwiss on Github. If you encounter trouble while
    using ``wmoutils``, please report the issue on the `GitHub repository`_. If you wish to
@@ -51,6 +50,7 @@ You can refer to the pages linked below for more details on these different func
    :caption: Table of contents
 
    Start <self>
+   install
    query
    gbon
    changelog

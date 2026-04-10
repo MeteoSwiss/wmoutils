@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="_static/documentation_options.js?v=8833708d"></script>
+    <script src="_static/documentation_options.js?v=4bea2af6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'gbon';</script>
@@ -149,6 +149,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="index.html">
     Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
   </a>
 </li>
 
@@ -281,6 +288,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="query.html">
     The query module
   </a>
@@ -405,7 +419,8 @@
 <h1>The <code class="docutils literal notranslate"><span class="pre">gbon</span></code> module<a class="headerlink" href="#the-gbon-module" title="Link to this heading">#</a></h1>
 <section id="gbon-resolution">
 <h2>GBON resolution<a class="headerlink" href="#gbon-resolution" title="Link to this heading">#</a></h2>
-<p>This module encodes the applicable GBON resolutions for different station types within the function:</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">gbon</span></code> module encodes the applicable GBON horizontal resolutions for different station types
+within the function:</p>
 <dl class="py function">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">get_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'land'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/wmoutils/gbon.html#get_resolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
@@ -426,6 +441,14 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">False</
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>To get the GBON horizontal resolution for a surface station over land,
+with standard density:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">gbon</span>
+
+<span class="n">res_in_km</span> <span class="o">=</span> <span class="n">gbon</span><span class="o">.</span><span class="n">get_resolution</span><span class="p">(</span><span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">over</span><span class="o">=</span><span class="s1">&#39;land&#39;</span><span class="p">,</span> <span class="n">high_density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
@@ -459,10 +482,10 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">False</
 <p class="rubric">Example</p>
 <p>To get the the GBON radius of influence for a surface station over land,
 with standard density:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils.gbon</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_influence_radius</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wmoutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">gbon</span>
 
-<span class="n">radius_in_km</span> <span class="o">=</span> <span class="n">get_influence_radius</span><span class="p">(</span><span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">over</span><span class="o">=</span><span class="s1">&#39;land&#39;</span><span class="p">,</span>
-                                    <span class="n">high_density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">radius_in_km</span> <span class="o">=</span> <span class="n">gbon</span><span class="o">.</span><span class="n">get_influence_radius</span><span class="p">(</span><span class="n">station_type</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="n">over</span><span class="o">=</span><span class="s1">&#39;land&#39;</span><span class="p">,</span>
+                                         <span class="n">high_density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
@@ -561,7 +584,7 @@ station.</p>
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-wmoutils, version: dev-bbac302</div>
+wmoutils, version: dev-ff3979e</div>
       
         <div class="footer-item"><p class="last-updated">
   Last updated on 2026-04-10.
