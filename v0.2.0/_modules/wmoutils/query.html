@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wmoutils.query &#8212; wmoutils</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+    <script src="../../_static/documentation_options.js?v=d0de09a7"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/wmoutils/query';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'v0.2.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="v0.2.0" />
+    <meta name="docbuild:last-update" content="2026-04-10"/>
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">wmoutils</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gbon.html">
+    The gbon module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../query.html">
+    The query module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gbon.html">
+    The gbon module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">wmoutils.query</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for wmoutils.query</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS</span>
+
+<span class="sd">Distributed under the terms of the BSD 3-Clause License.</span>
+
+<span class="sd">SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="sd">Module contains: functions to query external APIs, e.g. WDQMS and OSCAR/Surface.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import from Python</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="c1"># import from this module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_func_call</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">WmoutilsError</span>
+
+<span class="c1"># Setup the logger</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="build_base_wdqms_request">
+<a class="viewcode-back" href="../../autoapi/wmoutils/query/index.html#wmoutils.query.build_base_wdqms_request">[docs]</a>
+<span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_base_wdqms_request</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Return the string required for a WDQMS API request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        module (str): one of [&#39;gbon&#39;, &#39;nwp&#39;]</span>
+<span class="sd">        station_type (str): one of [&#39;surface&#39;,&#39;upper-air&#39;, &#39;marine&#39;]</span>
+<span class="sd">        interval (str): assessment interval, i.e. one of [&#39;monthly&#39;, &#39;daily&#39;, &#39;six_hour&#39;].</span>
+<span class="sd">        category (str): one of [&#39;availability&#39;, &#39;quality&#39;, &#39;timeliness&#39;]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: base URL of the API request</span>
+
+<span class="sd">    Warning:</span>
+<span class="sd">        Not all combinations of the above parameters are valid, and the function will raise an error</span>
+<span class="sd">        if an invalid combination is provided.</span>
+
+<span class="sd">    TODO:</span>
+<span class="sd">       - Add support for GCOS</span>
+<span class="sd">       - Add support for Transition Monitoring</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Basic sanity checks on the input parameters</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gbon&#39;</span><span class="p">,</span> <span class="s1">&#39;nwp&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;module&#39;: </span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="s1">&#39;daily&#39;</span><span class="p">,</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;interval&#39;: </span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;availability&#39;</span><span class="p">,</span> <span class="s1">&#39;quality&#39;</span><span class="p">,</span> <span class="s1">&#39;timeliness&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;category&#39;: </span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># For the station type, we need to map our own keys to those used by WDQQMS.</span>
+    <span class="k">match</span> <span class="n">station_type</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s1">&#39;surface&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;synop&#39;</span>
+        <span class="k">case</span> <span class="s1">&#39;upper-air&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;temp&#39;</span>
+        <span class="k">case</span> <span class="s1">&#39;marine&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;marine_surface&#39;</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown &#39;station_type&#39;: </span><span class="si">{</span><span class="n">station_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Raise some errors in case of know wrong parameter pairs</span>
+    <span class="c1"># GBON upper-air has no six-hour</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">station_type</span> <span class="o">==</span> <span class="s1">&#39;upper-air&#39;</span> <span class="ow">and</span> <span class="n">interval</span> <span class="o">==</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;Six-hourly assessments are not part of upper-air GBON,&#39;+&quot;</span>
+                            <span class="s2">&quot; cannot build request.&quot;</span><span class="p">)</span>
+    <span class="c1"># GBON has no marine stations</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">station_type</span> <span class="o">==</span> <span class="s1">&#39;marine&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;Marine stations are not part of GBON, cannot build request.&quot;</span><span class="p">)</span>
+    <span class="c1"># GBON can only have availability assessments</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;gbon&#39;</span> <span class="ow">and</span> <span class="n">category</span> <span class="o">!=</span> <span class="s1">&#39;availability&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;GBON only has availability assessments, cannot build request.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;https://wdqms.wmo.int/wdqmsapi/v1/download/</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s1">/?&#39;</span></div>
+
+
+
+<div class="viewcode-block" id="query_wdqms">
+<a class="viewcode-back" href="../../query.html#wmoutils.query.query_wdqms">[docs]</a>
+<span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_wdqms</span><span class="p">(</span>  <span class="c1"># pylint: disable=too-many-arguments, too-many-positional-arguments</span>
+                <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">station_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                <span class="n">var_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+                <span class="n">baseline</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;OSCAR&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Utility function to query WDQMS via its API, and format the reply as a polars.DataFrame.</span>
+
+<span class="sd">    Warning:</span>
+<span class="sd">        This function currently does not allow to query all possible combinations of parameters</span>
+<span class="sd">        supported by the WDQMS API. While coverage might grow overtime, it may never cover all</span>
+<span class="sd">        options.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        module (str): one of ``[&#39;gbon&#39;, &#39;nwp&#39;]``.</span>
+<span class="sd">        station_type (str): one of ``[&#39;surface&#39;, &#39;upper-air&#39;, &#39;marine&#39;]``.</span>
+<span class="sd">        interval (str): assessment interval, i.e. one of ``[&#39;monthly&#39;, &#39;daily&#39;, &#39;six_hour&#39;]``.</span>
+<span class="sd">        category (str): one of ``[&#39;availability&#39;, &#39;quality&#39;, &#39;timeliness&#39;]``.</span>
+<span class="sd">        var_name (str): one of ``[&#39;temperature&#39;, &#39;pressure&#39;, &#39;humidity&#39;, &#39;zonal_wind&#39;,</span>
+<span class="sd">            &#39;meridional_wind&#39;]``.</span>
+<span class="sd">        date (str): date of the availability assessment, e.g. ``&#39;2023-11&#39;``.</span>
+<span class="sd">        period (str, optional): one of ``[&#39;00&#39;, &#39;06&#39;, &#39;12&#39;, &#39;18&#39;]``. Defaults to ``&#39;00&#39;``.</span>
+<span class="sd">            No effect unless if interval is ``&#39;six_hour&#39;``.</span>
+<span class="sd">        baseline (str, optional): one of ``[&#39;OSCAR&#39;, &#39;hourly&#39;]``. Defaults to ``&#39;OSCAR&#39;``.</span>
+<span class="sd">            No effect unless if module is ``&#39;nwp&#39;``.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        polars.DataFrame: the reply from the API request formatted as a polars DataFrame.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        WmoutilsError: if the API request fails, or if the combination of input parameters is</span>
+<span class="sd">            invalid.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Querying the availability of temperature observations for surface stations in GBON for</span>
+<span class="sd">        January 2026::</span>
+
+<span class="sd">            from wmoutils.query import query_wdqms</span>
+
+<span class="sd">            out = query_wdqms(module=&#39;gbon&#39;, station_type=&#39;surface&#39;, var_name=&#39;temperature&#39;,</span>
+<span class="sd">                              interval=&#39;monthly&#39;, category=&#39;availability&#39;, date=&#39;2026-01&#39;)</span>
+
+
+<span class="sd">    TODO:</span>
+<span class="sd">        - Allow to query individual NWP centers.</span>
+<span class="sd">        - Add support for GCOS and Transition Monitoring.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check if the date format is correct using datetime.strptime</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">valid_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">valid_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid date format: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">.&quot;</span> <span class="o">+</span>
+                                <span class="s2">&quot; Expected &#39;YYYY-MM-DD&#39; or &#39;YYYY-MM&#39;.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+
+    <span class="k">if</span> <span class="n">interval</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;monthly&#39;</span><span class="p">]:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">valid_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">valid_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Prepare the dict of parametters</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+              <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">var_name</span><span class="p">,</span>
+              <span class="s1">&#39;centers&#39;</span><span class="p">:</span> <span class="s1">&#39;COMBINED&#39;</span><span class="p">}</span>
+
+    <span class="c1"># In some cases, I need to add more keywords</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="o">==</span> <span class="s1">&#39;six_hour&#39;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;nwp&#39;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;baseline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">build_base_wdqms_request</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">station_type</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span>
+                       <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                       <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Issue an error if the request was not successful.</span>
+    <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Extract the request URL ... following https://stackoverflow.com/questions/30687683</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="p">[</span><span class="n">req</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">url</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WDQMS API request </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2"> failed with status code </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span>
+                            <span class="sa">f</span><span class="s2">&quot; and message: </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Convert the text of the reply to a polars.DataFrame, and return it.</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pdf</span></div>
+
+
+
+<div class="viewcode-block" id="query_oscar_surface">
+<a class="viewcode-back" href="../../query.html#wmoutils.query.query_oscar_surface">[docs]</a>
+<span class="nd">@log_func_call</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_oscar_surface</span><span class="p">(</span><span class="n">extract_prms</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">search_prms</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Utility function to query OSCAR/Surface and extract relevant station information and return</span>
+<span class="sd">    them as a polars DataFrame.</span>
+
+<span class="sd">    This function acts as a simple wrapper around the</span>
+<span class="sd">    `OSCAR/Surface API &lt;https://oscar.wmo.int/surface/#/faq/&gt;`_: it merely forwards the keyword</span>
+<span class="sd">    arguments it receives to the API, and extracts a few relevant parameters from the reply into a</span>
+<span class="sd">    polars DataFrame.</span>
+
+<span class="sd">    Warning:</span>
+<span class="sd">        This function does **not** check the validity of the keywords arguments. It is up to the</span>
+<span class="sd">        user to ensure the keyword arguments are valid and supported by the OSCAR/Surface API.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        See the `OSCAR/Surface API Reference &lt;https://oscar.wmo.int/surface/#/faq/&gt;`_ for the full</span>
+<span class="sd">        range of supported keyword arguments.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        extract_prms (list, optional): list of additional parameters to extract from the API reply,</span>
+<span class="sd">        in addition to ``[&#39;wigosId&#39;, &#39;name&#39;, &#39;longitude&#39;, &#39;latitude&#39;]``.</span>
+<span class="sd">        **search_prms: search keyword-arguments-and-value-pairs, to be fed directly to the</span>
+<span class="sd">            ``params`` keyword of the API ``requests.get()`` function.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pl.DataFrame: DataFrame containing the API response data.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        WmoutilsError: if the API request fails, or if the ``extract_prms`` argument is</span>
+<span class="sd">            not a list of strings.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        To query a station with a specific wigosId::</span>
+
+<span class="sd">            from wmoutils.query import query_oscar_surface</span>
+
+<span class="sd">            out = query_oscar_surface(wigosId=&#39;0-20000-0-06610&#39;)</span>
+
+<span class="sd">        To query all fixed surface stations in Switzerland::</span>
+
+<span class="sd">            out = query_oscar_surface(territoryName=&#39;CHE&#39;, facilityType=&#39;LandFixed&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Launch the API request ...</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://oscar.wmo.int/surface/rest/api/search/station&#39;</span><span class="p">,</span>
+                       <span class="n">params</span><span class="o">=</span><span class="n">search_prms</span><span class="p">,</span>
+                       <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># If something went wrong with the request, let&#39;s issue an error.</span>
+    <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OSCAR API request failed with status code </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span>
+                            <span class="sa">f</span><span class="s2">&quot; and message: </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set the default parameters to extract from the API reply</span>
+    <span class="n">prms_out</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;wigosId&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Deal with possible additional prms</span>
+    <span class="k">if</span> <span class="n">extract_prms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Make sure I got a list of strings, and not something else.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extract_prms</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+                                                         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">extract_prms</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">WmoutilsError</span><span class="p">(</span><span class="s2">&quot;The &#39;extract_prms&#39; argument must be a list of strings.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Very well, let&#39;s add the extra parameters to the list of parameters to extract.</span>
+        <span class="n">prms_out</span> <span class="o">+=</span> <span class="n">extract_prms</span>
+
+    <span class="c1"># Extract the necessary information from the reply ...</span>
+    <span class="n">stations</span> <span class="o">=</span> <span class="p">[[</span><span class="n">item</span><span class="p">[</span><span class="n">prm</span><span class="p">]</span> <span class="k">for</span> <span class="n">prm</span> <span class="ow">in</span> <span class="n">prms_out</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;wigosId&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                <span class="c1"># If wigosId is missing, fill it with None</span>
+                <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="n">prm</span><span class="p">]</span> <span class="k">for</span> <span class="n">prm</span> <span class="ow">in</span> <span class="n">prms_out</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">req</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;stationSearchResults&#39;</span><span class="p">]]</span>
+
+    <span class="c1"># ... and convert it to a bona-fide polars dataframe.</span>
+    <span class="n">stations_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">prms_out</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stations_df</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><!-- This will display the version of the docs -->
+wmoutils, version: v0.2.0-2776ad0</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on 2026-04-10.
+  <br/>
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, MeteoSwiss.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
