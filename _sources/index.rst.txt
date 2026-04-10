@@ -5,6 +5,10 @@ Welcome to the documentation of ``wmoutils``: a simple and unassuming collection
 to query and extract WMO-related information from various sources, such as `WDQMS`_ and
 `OSCAR/Surface`_.
 
+.. warning::
+   ``wmoutils`` is not an official product of the World Meteorological Organization
+   (WMO) !
+
 With ``wmoutils``, you can:
 
 - query `OSCAR/Surface`_::
@@ -27,10 +31,10 @@ With ``wmoutils``, you can:
 
 - derive the so-called "radius of influence" for GBON stations::
 
-   from wmoutils.gbon import get_influence_radius
+   from wmoutils import gbon
 
    # Compute the radius of influence for all GBON surface stations in Switzerland
-   roi_km = get_influence_radius(station_type='surface', over='land', high_density=False)
+   roi_km = gbon.get_influence_radius(station_type='surface', over='land', high_density=False)
 
 You can refer to the pages linked below for more details on these different functionalities.
 
