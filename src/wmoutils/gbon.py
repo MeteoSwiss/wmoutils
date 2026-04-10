@@ -33,6 +33,14 @@ def get_resolution(station_type: str, over: str = 'land',
     Returns:
         int: the GBON horizontal resolution in km
 
+    Example:
+        To get the GBON horizontal resolution for a surface station over land,
+        with standard density::
+
+            from wmoutils import gbon
+
+            res_in_km = gbon.get_resolution(station_type='surface', over='land', high_density=False)
+
     """
 
     match station_type:
@@ -90,10 +98,10 @@ def get_influence_radius(station_type: str, over: str = 'land',
         To get the the GBON radius of influence for a surface station over land,
         with standard density::
 
-            from wmoutils.gbon import get_influence_radius
+            from wmoutils import gbon
 
-            radius_in_km = get_influence_radius(station_type='surface', over='land',
-                                                high_density=False)
+            radius_in_km = gbon.get_influence_radius(station_type='surface', over='land',
+                                                     high_density=False)
 
     Notes:
 
