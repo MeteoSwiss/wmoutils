@@ -73,6 +73,6 @@ def test_query_oscar_surface():
     assert 'wigosId' in out.columns
     assert out['wigosId'].null_count() > 0  # pylint: disable=unsubscriptable-object
 
-    # Make sure I get a proper error if the extra parms are not a list of string
+    # Make sure I get a proper error if the extract_parms are not a list of string
     with pytest.raises(WmoutilsError):
-        query_oscar_surface(wigosId='0-20000-0-06610', extra_prms=[7])
+        query_oscar_surface(wigosId='0-20000-0-06610', extract_prms=[7])

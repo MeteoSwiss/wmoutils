@@ -173,7 +173,7 @@ def query_wdqms(  # pylint: disable=too-many-arguments, too-many-positional-argu
 
 
 @log_func_call(logger)
-def query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -> pl.DataFrame:
+def query_oscar_surface(extract_prms: list | None = None, **search_prms: str) -> pl.DataFrame:
     """ Utility function to query OSCAR/Surface and extract relevant station information and return
     them as a polars DataFrame.
 
@@ -191,17 +191,17 @@ def query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -
         range of supported keyword arguments.
 
     Args:
-        extra_prms (list, optional): list of additional parameters to extract from the API reply, in
-            addition to ``['wigosId', 'name', 'longitude', 'latitude']``.
-        **search_params: search keyword-arguments-and-value-pairs, to be fed directly to the
+        extract_prms (list, optional): list of additional parameters to extract from the API reply,
+        in addition to ``['wigosId', 'name', 'longitude', 'latitude']``.
+        **search_prms: search keyword-arguments-and-value-pairs, to be fed directly to the
             ``params`` keyword of the API ``requests.get()`` function.
 
     Returns:
         pl.DataFrame: DataFrame containing the API response data.
 
     Raises:
-        WmoutilsError: if the API request fails, or if the ``extra_prms`` argument is not a list of
-            strings.
+        WmoutilsError: if the API request fails, or if the ``extract_prms`` argument is
+            not a list of strings.
 
     Examples:
         To query a station with a specific wigosId::
@@ -212,13 +212,13 @@ def query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -
 
         To query all fixed surface stations in Switzerland::
 
-            out = query_oscar_surface(territoryName='CHE',facilityType='LandFixed')
+            out = query_oscar_surface(territoryName='CHE', facilityType='LandFixed')
 
     """
 
     # Launch the API request ...
     req = requests.get('https://oscar.wmo.int/surface/rest/api/search/station',
-                       params=search_params,
+                       params=search_prms,
                        timeout=10)
 
     # If something went wrong with the request, let's issue an error.
@@ -230,14 +230,14 @@ def query_oscar_surface(extra_prms: list | None = None, **search_params: dict) -
     prms_out = ['wigosId', 'name', 'longitude', 'latitude']
 
     # Deal with possible additional prms
-    if extra_prms is not None:
+    if extract_prms is not None:
         # Make sure I got a list of strings, and not something else.
-        if not isinstance(extra_prms, list) or not all(isinstance(item, str)
-                                                       for item in extra_prms):
-            raise WmoutilsError("The 'extra_prms' argument must be a list of strings.")
+        if not isinstance(extract_prms, list) or not all(isinstance(item, str)
+                                                         for item in extract_prms):
+            raise WmoutilsError("The 'extract_prms' argument must be a list of strings.")
 
         # Very well, let's add the extra parameters to the list of parameters to extract.
-        prms_out += extra_prms
+        prms_out += extract_prms
 
     # Extract the necessary information from the reply ...
     stations = [[item[prm] for prm in prms_out] if 'wigosId' in item.keys()
