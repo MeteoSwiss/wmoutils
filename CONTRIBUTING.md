@@ -92,13 +92,7 @@ All function definitions must include type annotations.
 
 ### Running Tests
 
-Run all tests:
-
-```console
-$ pytest
-```
-
-Run tests with coverage:
+Run all tests with coverage:
 
 ```console
 $ pytest --cov=src
@@ -108,6 +102,7 @@ $ pytest --cov=src
 
 - Add docstrings to new functions, classes, and modules
 - Update documentation for any changed functionality
+- For new pages: disable the html sidebar in ``conf.py``
 - Follow the existing documentation style
 - Build documentation locally to verify changes:
 
@@ -117,15 +112,9 @@ $ sphinx-build doc doc/_build
 
 ## Pull Request Process
 
-1. **Update the CHANGELOG**: Add a brief description of your changes in ``CHANGELOG.rst``.
-
-2. **Update AUTHORS**: If this is your first contribution, add your name to the ``AUTHORS`` file.
-
-3. **Create a Pull Request**: Use our ``pull request template``.
-
-4. **Code Review**: A maintainer will review your PR. Be prepared to make changes based on feedback.
-
-5. **Merge**: Once approved and all checks pass, a maintainer will merge your PR.
+Create a Pull Request using our pull request template. A maintainer will review your PR.
+Be prepared to make changes based on feedback. Once approved and all checks pass, a maintainer will
+merge your PR.
 
 ### Commit Messages
 
@@ -158,6 +147,6 @@ The TAG must follow the [semantic version](https://semver.org/) format and [PEP 
 
 Steps to follow for a new release:
 
-* Adapt CHANGELOG.rst with release information
+* Adapt ``CHANGELOG.rst`` with release information
 * Adapt ``doc/_static/switcher_config.json`` adding the new documentation URL for the release
 * Create a new Release in the Github project
