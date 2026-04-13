@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2026 MeteoSwiss
 
-name: CI_publish_dev_documentation
+name: CI_publish_dev_docs
 
 on:
   workflow_run:
@@ -15,7 +15,7 @@ on:
 
 jobs:
 
-  publish:
+  publish_dev_docs:
     runs-on: ubuntu-latest
 
     permissions:

@@ -15,7 +15,7 @@ on:
   workflow_call:
 
 jobs:
-  pipeline:
+  test_pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
