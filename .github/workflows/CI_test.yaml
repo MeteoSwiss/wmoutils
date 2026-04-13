@@ -15,7 +15,8 @@ on:
   workflow_call:
 
 jobs:
-  pipeline:
+  test_pipeline:
+    name: CI_test on Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
