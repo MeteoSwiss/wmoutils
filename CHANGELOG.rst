@@ -12,13 +12,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 =====
 Added
 ------
+- [2026-05-05, fpavogt] Add logging example to docs.
 
 Fixed
 -----
 
 Changed
 -------
-- [20206-04-13, fpavogt] Cleanup docs and move README to .md.
+- [2026-04-13, fpavogt] Cleanup docs and move README to .md.
 
 Deprecated
 ----------
