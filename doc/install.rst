@@ -23,3 +23,23 @@ up a suitable development environment for ``wmoutils`` (should you be interested
 .. _PyPI: https://pypi.org/project/wmoutils/
 .. _Github: https://github.com/MeteoSwiss/wmoutils
 .. _contributing guidelines: https://github.com/MeteoSwiss/wmoutils/blob/main/CONTRIBUTING.rst
+
+
+Logging
+=======
+
+``wmoutils`` comes with a built-in logging setup relying on a `NullHandler`_ to avoid bothering
+users with unwanted messages. Should you wish to see/record the log messages (e.g. for debugging
+purposes), you can do so by setting up your own handler, e.g. via:
+
+.. code-block:: python
+
+      import logging
+
+      logging.basicConfig(level=logging.INFO)
+      logging.getLogger('wmoutils').setLevel(logging.DEBUG)
+
+      # ... your code using wmoutils here ...
+
+
+.. _NullHandler: https://docs.python.org/3/library/logging.handlers.html#logging.NullHandler
